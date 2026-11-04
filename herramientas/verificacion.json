@@ -1,0 +1,231 @@
+{
+  "fecha": "2026-10-30T15:00:33.811Z",
+  "resultados": [
+    {
+      "nombre": "01-inicio-escritorio",
+      "ancho": 1440,
+      "alto": 1700,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 2188,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 4,
+        "imagenOk": true,
+        "anchoVentana": 1440,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nHábitos\nFavoritos\n0\nIngresar\nBIENESTAR BASADO EN EVIDENCIA\nRecomendaciones salu"
+      }
+    },
+    {
+      "nombre": "02-explorar-escritorio",
+      "ancho": 1440,
+      "alto": 1700,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 2788,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 13,
+        "imagenOk": null,
+        "anchoVentana": 1440,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nHábitos\nFavoritos\n0\nIngresar\nInicio\nExplorar\nExplora recomendaciones saludables"
+      }
+    },
+    {
+      "nombre": "03-detalle-escritorio",
+      "ancho": 1440,
+      "alto": 1700,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 1521,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 2,
+        "imagenOk": null,
+        "anchoVentana": 1440,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nHábitos\nFavoritos\n1\nMG\nMaría\nInicio\nExplorar\nBowl de avena y frutos rojos\nALIME"
+      }
+    },
+    {
+      "nombre": "04-login-escritorio",
+      "ancho": 1440,
+      "alto": 1041,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 544,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 0,
+        "imagenOk": null,
+        "anchoVentana": 1440,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nHábitos\nFavoritos\n0\nIngresar\nTU ESPACIO DE BIENESTAR\nUn plan que se adapta a ti"
+      }
+    },
+    {
+      "nombre": "05-perfil-escritorio",
+      "ancho": 1440,
+      "alto": 1544,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 1205,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 0,
+        "imagenOk": null,
+        "anchoVentana": 1440,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nHábitos\nFavoritos\n0\nMG\nMaría\nMG\nMaría Gómez\n\ndemo@vitalia.co · Plan gratuito\n\nC"
+      }
+    },
+    {
+      "nombre": "06-favoritos-escritorio",
+      "ancho": 1440,
+      "alto": 1190,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 725,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 3,
+        "imagenOk": null,
+        "anchoVentana": 1440,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nHábitos\nFavoritos\n3\nMG\nMaría\nInicio\nFavoritos\nMis favoritos\n\nTu colección perso"
+      }
+    },
+    {
+      "nombre": "07-habitos-escritorio",
+      "ancho": 1440,
+      "alto": 1585,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 915,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 0,
+        "imagenOk": null,
+        "anchoVentana": 1440,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nHábitos\nFavoritos\n0\nMG\nMaría\nInicio\nHábitos\nSeguimiento de hábitos\n\nMarca cada "
+      }
+    },
+    {
+      "nombre": "08-admin-escritorio",
+      "ancho": 1440,
+      "alto": 1780,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 1556,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 0,
+        "imagenOk": null,
+        "anchoVentana": 1440,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nHábitos\nFavoritos\n0\nContenidos\nAV\nAdministrador\nInicio\nGestión de contenidos\nAD"
+      }
+    },
+    {
+      "nombre": "09-inicio-movil",
+      "ancho": 390,
+      "alto": 1500,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 2188,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 4,
+        "imagenOk": true,
+        "anchoVentana": 390,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nBIENESTAR BASADO EN EVIDENCIA\nRecomendaciones saludables para tu día a día\n\nAlimentación, movim"
+      }
+    },
+    {
+      "nombre": "10-wireframe",
+      "ancho": 1440,
+      "alto": 4445,
+      "contenido": {
+        "tieneApp": false,
+        "longitud": 0,
+        "titulo": "Vitalia · Wireframe de baja fidelidad",
+        "desborde": 0,
+        "tarjetas": 0,
+        "imagenOk": null,
+        "anchoVentana": 1440,
+        "cuerpo": "Vitalia · Wireframe de baja fidelidad\n\nRepresentación estructural de la página de recomendaciones saludables. Se muestran bloques, jerarquía, navegación, buscad"
+      }
+    },
+    {
+      "nombre": "11-explorar-movil",
+      "ancho": 390,
+      "alto": 1600,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 2788,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 13,
+        "imagenOk": null,
+        "anchoVentana": 390,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nExplora recomendaciones saludables\n\nBusca por palabra clave y filtra por catego"
+      }
+    },
+    {
+      "nombre": "12-detalle-movil",
+      "ancho": 390,
+      "alto": 1600,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 1538,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 2,
+        "imagenOk": null,
+        "anchoVentana": 390,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nEnsalada de quinoa y aguacate\nALIMENTACIÓN\nEnsalada de quinoa y aguacate\n\nProte"
+      }
+    },
+    {
+      "nombre": "13-inicio-movil-vista",
+      "ancho": 390,
+      "alto": 844,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 2188,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 4,
+        "imagenOk": true,
+        "anchoVentana": 390,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nBIENESTAR BASADO EN EVIDENCIA\nRecomendaciones saludables para tu día a día\n\nAlimentación, movim"
+      }
+    },
+    {
+      "nombre": "14-explorar-movil-vista",
+      "ancho": 390,
+      "alto": 844,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 2788,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 13,
+        "imagenOk": null,
+        "anchoVentana": 390,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nExplora recomendaciones saludables\n\nBusca por palabra clave y filtra por catego"
+      }
+    },
+    {
+      "nombre": "15-detalle-movil-vista",
+      "ancho": 390,
+      "alto": 844,
+      "contenido": {
+        "tieneApp": true,
+        "longitud": 1538,
+        "titulo": "Vitalia · Recomendaciones saludables",
+        "desborde": 0,
+        "tarjetas": 2,
+        "imagenOk": null,
+        "anchoVentana": 390,
+        "cuerpo": "Saltar al contenido principal\nVitalia\nRECOMENDACIONES SALUDABLES\nInicio\nExplorar\nEnsalada de quinoa y aguacate\nALIMENTACIÓN\nEnsalada de quinoa y aguacate\n\nProte"
+      }
+    }
+  ],
+  "errores": []
+}

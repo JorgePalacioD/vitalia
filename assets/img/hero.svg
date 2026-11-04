@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 500" fill="none" role="img" aria-label="Ilustración de un bowl saludable con vegetales y frutas">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="480" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7F5EC"/>
+      <stop offset="1" stop-color="#CDE9D6"/>
+    </linearGradient>
+    <linearGradient id="bowl" x1="140" y1="280" x2="420" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FBF8"/>
+      <stop offset="1" stop-color="#DDEBE1"/>
+    </linearGradient>
+    <linearGradient id="leafA" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#7BC48F"/>
+      <stop offset="1" stop-color="#2E8B57"/>
+    </linearGradient>
+    <linearGradient id="leafB" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#A8D36B"/>
+      <stop offset="1" stop-color="#5CAE6D"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFC56B"/>
+      <stop offset="1" stop-color="#F28B2E"/>
+    </linearGradient>
+    <linearGradient id="tomato" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F98B6D"/>
+      <stop offset="1" stop-color="#E4573C"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#123A24" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <circle cx="280" cy="250" r="210" fill="url(#bg)"/>
+  <circle cx="280" cy="250" r="210" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="2"/>
+
+  <g opacity="0.5">
+    <circle cx="92" cy="120" r="7" fill="#B7DD7F"/>
+    <circle cx="470" cy="150" r="10" fill="#8FD0A8"/>
+    <circle cx="450" cy="380" r="6" fill="#B7DD7F"/>
+    <circle cx="120" cy="390" r="9" fill="#8FD0A8"/>
+  </g>
+
+  <!-- hojas decorativas -->
+  <path d="M96 232c-8-40 12-76 48-88 8 40-10 76-48 88Z" fill="url(#leafB)" opacity="0.9"/>
+  <path d="M470 300c30-26 36-66 18-96-32 24-40 64-18 96Z" fill="url(#leafA)" opacity="0.85"/>
+
+  <!-- bowl -->
+  <g filter="url(#shadow)">
+    <ellipse cx="280" cy="338" rx="168" ry="52" fill="#BFDCC7"/>
+    <path d="M112 306c0 74 75 134 168 134s168-60 168-134H112Z" fill="url(#bowl)"/>
+    <ellipse cx="280" cy="306" rx="168" ry="58" fill="#EFF7F1"/>
+    <ellipse cx="280" cy="306" rx="146" ry="46" fill="#F9FCFA"/>
+  </g>
+
+  <!-- contenido -->
+  <g>
+    <path d="M188 292c-18-30-4-62 26-70 12 28 4 58-26 70Z" fill="url(#leafA)"/>
+    <path d="M216 300c-2-36 22-60 56-60 0 34-22 58-56 60Z" fill="url(#leafB)"/>
+    <path d="M262 288c8-32 38-48 70-40-6 30-34 48-70 40Z" fill="url(#leafA)"/>
+    <path d="M318 300c6-30 32-48 64-42-4 28-30 46-64 42Z" fill="#8FD0A8"/>
+    <circle cx="236" cy="276" r="26" fill="url(#tomato)"/>
+    <circle cx="236" cy="276" r="17" fill="#F9A98F" opacity="0.6"/>
+    <circle cx="342" cy="270" r="23" fill="url(#orange)"/>
+    <path d="M342 247c6-10 18-12 26-8-6 10-16 12-26 8Z" fill="#5CAE6D"/>
+    <circle cx="292" cy="266" r="19" fill="#F2B441"/>
+    <circle cx="292" cy="266" r="11" fill="#FFD98A"/>
+    <ellipse cx="270" cy="312" rx="30" ry="14" fill="#F6E2B8"/>
+    <ellipse cx="318" cy="316" rx="22" ry="11" fill="#EFD3A0"/>
+    <circle cx="206" cy="316" r="12" fill="#7B6CB5"/>
+    <circle cx="360" cy="310" r="11" fill="#7B6CB5"/>
+    <path d="M196 268c10-16 30-20 44-10-10 14-28 18-44 10Z" fill="#A8D36B"/>
+  </g>
+
+  <!-- vaso de agua -->
+  <g filter="url(#shadow)">
+    <path d="M420 190h56l-7 86c-1 12-10 20-21 20s-20-8-21-20l-7-86Z" fill="#DDF1F7" fill-opacity="0.9" stroke="#BEE3EE" stroke-width="3"/>
+    <path d="M424 222h48l-5 54c-1 9-8 15-19 15s-18-6-19-15l-5-54Z" fill="#8ED3E8" fill-opacity="0.75"/>
+    <path d="M436 210c6-8 16-8 22 0" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- manzana -->
+  <g filter="url(#shadow)">
+    <path d="M140 150c0-18 14-32 32-32 8 0 15 3 21 8 6-5 13-8 21-8 18 0 32 14 32 32 0 30-26 56-53 66-27-10-53-36-53-66Z" fill="url(#tomato)"/>
+    <path d="M188 120c0-12 6-22 16-28" stroke="#5CAE6D" stroke-width="6" stroke-linecap="round"/>
+    <path d="M188 124c8-10 22-12 32-4-8 10-22 12-32 4Z" fill="#5CAE6D"/>
+    <ellipse cx="170" cy="158" rx="12" ry="18" fill="#FFD1C1" opacity="0.55" transform="rotate(-20 170 158)"/>
+  </g>
+
+  <!-- destellos -->
+  <path d="M112 100l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z" fill="#F2B441"/>
+  <path d="M448 90l3 9 9 3-9 3-3 9-3-9-9-3 9-3 3-9Z" fill="#7BC48F"/>
+</svg>

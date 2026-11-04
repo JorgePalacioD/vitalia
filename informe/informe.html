@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informe ACA · Vitalia · Ingeniería Web</title>
+  <style>
+    :root {
+      --verde: #1c5e3b;
+      --verde-oscuro: #0f3b26;
+      --verde-claro: #e7f5ec;
+      --gris: #56685c;
+      --borde: #cfd9cf;
+      --tinta: #111;
+    }
+    * { box-sizing: border-box; }
+    html { background: #dfe5dc; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12pt;
+      line-height: 1.5;
+      color: var(--tinta);
+    }
+    .documento {
+      width: 21cm;
+      margin: 24px auto;
+      background: #fff;
+      padding: 2.54cm;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.18);
+    }
+    h1, h2, h3, h4 { font-family: Arial, Helvetica, sans-serif; color: var(--verde-oscuro); line-height: 1.25; }
+    h1 { font-size: 17pt; margin: 0 0 14pt; padding-bottom: 8pt; border-bottom: 2.5pt solid var(--verde); }
+    h2 { font-size: 13.5pt; margin: 20pt 0 8pt; }
+    h3 { font-size: 12pt; margin: 16pt 0 6pt; }
+    h4 { font-size: 11.5pt; margin: 12pt 0 4pt; }
+    p { margin: 0 0 10pt; text-align: justify; }
+    ul, ol { margin: 0 0 12pt 20pt; padding: 0; }
+    li { margin-bottom: 4pt; text-align: justify; }
+    a { color: var(--verde); }
+    strong { color: #0d2f1e; }
+    .seccion { margin-top: 18pt; }
+    .salto { page-break-before: always; break-before: page; }
+
+    /* Portada */
+    .portada { min-height: 23.5cm; display: flex; flex-direction: column; page-break-after: always; break-after: page; }
+    .portada__franja { height: 10px; background: linear-gradient(90deg, var(--verde-oscuro), #34965d, #b7dd7f); border-radius: 4px; }
+    .portada__institucion { display: flex; align-items: center; gap: 14px; margin-top: 30pt; }
+    .portada__logo {
+      width: 58px; height: 58px; border-radius: 14px; background: var(--verde-oscuro); color: #eafbee;
+      display: grid; place-items: center; font-size: 16pt; font-weight: bold; letter-spacing: -1px;
+    }
+    .portada__institucion strong { display: block; font-size: 12.5pt; color: var(--verde-oscuro); line-height: 1.3; }
+    .portada__institucion span { font-size: 10pt; color: var(--gris); }
+    .portada__centro { margin-top: 52pt; }
+    .portada__etiqueta { display: inline-block; font-size: 9.5pt; letter-spacing: 2px; text-transform: uppercase; color: var(--verde); font-weight: bold; border: 1.5pt solid var(--verde); padding: 5pt 10pt; border-radius: 999px; }
+    .portada h1 { font-size: 27pt; line-height: 1.15; border: none; margin: 20pt 0 12pt; padding: 0; color: var(--verde-oscuro); }
+    .portada__subtitulo { font-size: 13.5pt; color: var(--gris); max-width: 15cm; margin-bottom: 34pt; }
+    .portada__datos { border-top: 1pt solid var(--borde); border-bottom: 1pt solid var(--borde); padding: 16pt 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10pt 24pt; font-size: 10.5pt; }
+    .portada__datos dt { color: var(--gris); font-size: 9pt; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 2pt; }
+    .portada__datos dd { margin: 0; font-weight: bold; color: #1b2a1f; }
+    .portada__pie { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; font-size: 9.5pt; color: var(--gris); padding-top: 18pt; }
+    .portada__pie strong { color: var(--verde-oscuro); }
+    .portada__sello { border: 1.5pt solid var(--verde); color: var(--verde); border-radius: 999px; padding: 6pt 12pt; font-weight: bold; font-size: 9pt; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* Figuras y tablas */
+    figure { margin: 14pt 0 18pt; page-break-inside: avoid; break-inside: avoid; text-align: center; }
+    figure img { display: block; width: 100%; height: auto; max-height: 20cm; object-fit: contain; border: 1pt solid var(--borde); border-radius: 4pt; background: #fff; }
+    figure img.movil { max-width: 7.4cm; max-height: 19cm; margin: 0 auto; }
+    figure img.wf-movil { max-width: 9.6cm; max-height: 20cm; margin: 0 auto; }
+    figcaption { font-size: 9.5pt; color: var(--gris); margin-top: 7pt; line-height: 1.35; text-align: center; }
+    figcaption strong { color: var(--verde-oscuro); }
+    table { width: 100%; border-collapse: collapse; margin: 8pt 0 16pt; font-size: 9.5pt; line-height: 1.35; page-break-inside: avoid; break-inside: avoid; }
+    caption { caption-side: top; text-align: left; font-size: 9.5pt; color: var(--gris); margin-bottom: 5pt; }
+    caption strong { color: var(--verde-oscuro); }
+    th { background: var(--verde-claro); color: var(--verde-oscuro); text-align: left; padding: 6pt 7pt; border: 0.75pt solid var(--borde); font-size: 9pt; }
+    td { padding: 6pt 7pt; border: 0.75pt solid var(--borde); vertical-align: top; }
+    tr:nth-child(even) td { background: #fafcf9; }
+
+    .destacado { background: var(--verde-claro); border-left: 4pt solid var(--verde); padding: 10pt 12pt; margin: 12pt 0; font-size: 10.5pt; page-break-inside: avoid; }
+    .nota { background: #fef6e6; border-left: 4pt solid #d9a12c; padding: 10pt 12pt; margin: 12pt 0; font-size: 10.5pt; page-break-inside: avoid; }
+    .ficha { border: 0.75pt solid var(--borde); border-radius: 5pt; padding: 10pt 12pt; margin: 10pt 0 14pt; background: #fbfcf8; page-break-inside: avoid; }
+    .ficha h4 { margin: 0 0 5pt; color: var(--verde); }
+    .ficha p { margin: 0 0 5pt; font-size: 10.5pt; }
+    .etiqueta-rf { display: inline-block; background: var(--verde-oscuro); color: #fff; font-size: 8.5pt; padding: 2pt 7pt; border-radius: 999px; letter-spacing: 0.5px; vertical-align: middle; margin-right: 6px; }
+    .refs p { padding-left: 1.27cm; text-indent: -1.27cm; margin-bottom: 8pt; text-align: left; }
+    .mapa { border: 1pt solid var(--borde); border-radius: 6pt; padding: 12pt; background: #fbfcf8; page-break-inside: avoid; }
+    .mapa__fila { display: flex; gap: 6pt; align-items: center; flex-wrap: wrap; margin-bottom: 8pt; font-size: 9.5pt; }
+    .mapa__nodo { border: 1pt solid var(--verde); color: var(--verde-oscuro); background: #fff; border-radius: 4pt; padding: 4pt 7pt; font-weight: bold; }
+    .mapa__nodo--fuerte { background: var(--verde-oscuro); color: #fff; border-color: var(--verde-oscuro); }
+    .mapa__flecha { color: #7c8c80; font-weight: bold; }
+    .enlace-caja { border: 1.5pt dashed var(--verde); border-radius: 6pt; padding: 12pt 14pt; background: #f4fbf6; page-break-inside: avoid; }
+    .enlace-caja p { margin-bottom: 5pt; }
+    .pie-doc { margin-top: 26pt; border-top: 1pt solid var(--borde); padding-top: 8pt; font-size: 8.5pt; color: var(--gris); text-align: center; }
+
+    @page { size: A4; margin: 2.54cm; }
+    @media print {
+      html, body { background: #fff; }
+      .documento { width: auto; margin: 0; padding: 0; box-shadow: none; }
+      a { color: var(--tinta); text-decoration: none; }
+      .salto { page-break-before: always; }
+      figure, table, .ficha, .destacado, .nota, .enlace-caja { page-break-inside: avoid; }
+      h1, h2, h3 { page-break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="documento">
+
+  <!-- ===================== 1. PORTADA ===================== -->
+  <section class="portada">
+    <div class="portada__franja"></div>
+    <div class="portada__institucion">
+      <div class="portada__logo">CUN</div>
+      <div>
+        <strong>Corporación Unificada Nacional de Educación Superior</strong>
+        <span>CUN Digital · Programa Académico de Ingeniería de Sistemas</span>
+      </div>
+    </div>
+
+    <div class="portada__centro">
+      <span class="portada__etiqueta">Actividad de Construcción Aplicada</span>
+      <h1>Diseño de una página de recomendaciones saludables: wireframe, mockup y prototipo</h1>
+      <p class="portada__subtitulo">Proyecto <strong>Vitalia</strong> · Asignatura Ingeniería Web · Análisis de requerimientos, diseño de interfaz y prototipo navegable centrado en el usuario.</p>
+    </div>
+
+    <dl class="portada__datos">
+      <div><dt>Asignatura</dt><dd>Ingeniería Web</dd></div>
+      <div><dt>Programa académico</dt><dd>Ingeniería de Sistemas</dd></div>
+      <div><dt>Integrantes del grupo</dt><dd>[Integrante 1]<br />[Integrante 2]<br />[Integrante 3]</dd></div>
+      <div><dt>Docente</dt><dd>[Nombre del docente]</dd></div>
+      <div><dt>Fecha de entrega</dt><dd>8 de noviembre de 2026</dd></div>
+      <div><dt>Modalidad</dt><dd>Grupal (2 a 3 integrantes) · entrega individual</dd></div>
+    </dl>
+
+    <div class="portada__pie">
+      <div>
+        <strong>Entregables:</strong> análisis de requerimientos · wireframe · mockup · prototipo navegable · informe<br />
+        <span>Producto digital: Vitalia · Recomendaciones saludables</span>
+      </div>
+      <span class="portada__sello">ACA · Ingeniería Web</span>
+    </div>
+  </section>
+
+  <!-- ===================== 2. INTRODUCCIÓN ===================== -->
+  <section class="seccion">
+    <h1>2. Introducción</h1>
+    <p>El diseño de interfaces ocupa un lugar determinante en el ciclo de vida de un proyecto web porque permite validar la estructura, la apariencia y la interacción de un producto antes de invertir en su construcción técnica. En este proceso, el wireframe, el mockup y el prototipo representan tres niveles progresivos de concreción: del esquema estructural a la propuesta visual y, finalmente, a la simulación de la experiencia de uso.</p>
+    <p>La presente Actividad de Construcción Aplicada aborda la temática de una <strong>página de recomendaciones saludables</strong>. El problema que motiva la propuesta es la dificultad que enfrentan muchas personas para encontrar información confiable, organizada y aplicable sobre alimentación, actividad física, descanso y bienestar emocional. A ello se suman la sobrecarga de contenidos, la falta de personalización y la escasa continuidad de los hábitos. Para responder a esta necesidad se diseñó <strong>Vitalia</strong>, un producto digital que organiza recomendaciones en cuatro áreas, las adapta al perfil de salud del usuario y facilita su seguimiento mediante favoritos y un registro semanal de hábitos.</p>
+    <p>El alcance del proyecto comprende el análisis argumentado de cinco requerimientos funcionales (gestión de usuarios y perfil de salud, gestión de contenidos, búsqueda y filtrado, personalización y favoritos con seguimiento de hábitos) y cinco requerimientos no funcionales (rendimiento, escalabilidad, seguridad y privacidad, experiencia de usuario y compatibilidad con dispositivos). A partir de ese análisis se construyeron un wireframe de baja fidelidad, un mockup de alta fidelidad y un prototipo navegable con ocho vistas principales: inicio, explorar, detalle, inicio de sesión y registro, perfil de salud, favoritos, seguimiento de hábitos y gestión de contenidos para el rol administrador.</p>
+    <p>En cuanto a las herramientas, el wireframe se elaboró con HTML y CSS en escala de grises para garantizar que la estructura no se viera condicionada por decisiones visuales. El mockup y el prototipo se construyeron con HTML5, CSS3 y JavaScript, sin frameworks de interfaz, con el fin de demostrar el dominio de los fundamentos web y de obtener un producto autocontenido que funciona sin servidor. La tipografía se apoyó en Google Fonts (Poppins e Inter) y la iconografía se dibujó como SVG en línea. Las capturas que ilustran este informe se generaron directamente desde el prototipo mediante Chrome DevTools Protocol, de modo que las figuras corresponden al producto real y no a una simulación independiente. Figma, Balsamiq y Adobe XD se tomaron como referentes del flujo de trabajo de diseño; la implementación en código permite, además, exportar o replicar el sistema visual en cualquiera de estas herramientas si el equipo lo requiere.</p>
+    <p>El informe se organiza conforme a la estructura solicitada: portada, introducción, objetivos, análisis de requerimientos funcionales y no funcionales, wireframe, mockup, prototipo, conclusiones y referencias. Cada requerimiento se analiza de manera argumentada y se relaciona con las pantallas y decisiones de diseño que lo resuelven, de forma que el lector pueda verificar la trazabilidad entre lo solicitado y lo entregado.</p>
+  </section>
+
+  <!-- ===================== 3. OBJETIVOS ===================== -->
+  <section class="seccion salto">
+    <h1>3. Objetivos</h1>
+    <h2>3.1 Objetivo general</h2>
+    <p>Diseñar y construir el wireframe, el mockup y un prototipo navegable de una página de recomendaciones saludables, aplicando un análisis argumentado de requerimientos funcionales y no funcionales y un enfoque centrado en la experiencia del usuario, desde la concepción inicial hasta la entrega del producto digital.</p>
+
+    <h2>3.2 Objetivos específicos</h2>
+    <ol>
+      <li>Analizar e interpretar cada requerimiento funcional y no funcional establecido para la página de recomendaciones saludables, justificando las decisiones de diseño adoptadas y su trazabilidad con las pantallas construidas.</li>
+      <li>Estructurar el mapa de pantallas y elaborar el wireframe de baja fidelidad, definiendo la jerarquía de la información, la distribución de bloques y la navegación entre las vistas.</li>
+      <li>Definir y aplicar un sistema visual coherente con la temática de salud, que incluya paleta de colores, tipografía, iconografía, componentes y criterios de accesibilidad y adaptación a dispositivos.</li>
+      <li>Construir y validar un prototipo funcional y navegable que permita recorrer los flujos principales del usuario: búsqueda y filtrado, consulta de detalle, registro e inicio de sesión, perfil de salud, favoritos, seguimiento de hábitos y gestión de contenidos.</li>
+    </ol>
+  </section>
+
+  <!-- ===================== 4. RF ===================== -->
+  <section class="seccion salto">
+    <h1>4. Análisis de requerimientos funcionales</h1>
+    <p>El análisis de requerimientos funcionales parte de una pregunta central: <em>¿qué debe poder hacer el usuario y cómo se traduce esa necesidad en una decisión de interfaz verificable?</em> Para responderla, cada requerimiento se interpretó en términos de actores, tareas, información y reglas de negocio; posteriormente se identificaron las pantallas y componentes que lo resuelven y se definieron criterios de aceptación. La Tabla 1 sintetiza la trazabilidad general y los apartados siguientes profundizan en la argumentación.</p>
+
+    <table>
+      <caption><strong>Tabla 1.</strong> Trazabilidad entre requerimientos funcionales, pantallas y evidencias.</caption>
+      <thead><tr><th style="width:12%">Requerimiento</th><th style="width:31%">Interpretación</th><th style="width:31%">Pantallas / componentes</th><th style="width:26%">Evidencia</th></tr></thead>
+      <tbody>
+        <tr><td><strong>RF1</strong> Usuarios y perfil de salud</td><td>Registro, autenticación, roles y datos de salud para personalizar.</td><td>Login/registro, perfil de salud, encabezado de usuario, puerta de administración.</td><td>Figuras 5, 6, 14 y 15; rutas <code>#/login</code>, <code>#/perfil</code>.</td></tr>
+        <tr><td><strong>RF2</strong> Contenidos saludables</td><td>Catálogo categorizado y CRUD de recomendaciones por parte del administrador.</td><td>Inicio, explorar, detalle, gestión de contenidos.</td><td>Figuras 9 y 18; ruta <code>#/admin</code>.</td></tr>
+        <tr><td><strong>RF3</strong> Búsqueda y filtrado</td><td>Búsqueda textual combinada con categoría, nivel, duración y orden.</td><td>Buscador del inicio, pantalla explorar, estado vacío.</td><td>Figuras 3, 12 y 20; ruta <code>#/explorar</code>.</td></tr>
+        <tr><td><strong>RF4</strong> Personalización</td><td>Orden y selección de recomendaciones según objetivo, actividad y alergias.</td><td>Sección “Para ti”, aviso de afinidad, advertencia de alérgenos, orden del catálogo.</td><td>Figuras 11 y 13; cambio de objetivo en el perfil.</td></tr>
+        <tr><td><strong>RF5</strong> Favoritos y hábitos</td><td>Guardar recomendaciones y registrar el cumplimiento diario de hábitos.</td><td>Botón de favoritos, badge, vista de favoritos, seguimiento semanal.</td><td>Figuras 7, 8, 16 y 17; rutas <code>#/favoritos</code> y <code>#/habitos</code>.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>4.1 RF1. Gestión de usuarios y perfil de salud</h2>
+    <div class="ficha">
+      <h4>Interpretación del requerimiento</h4>
+      <p>La gestión de usuarios no se limita a crear una cuenta: implica reconocer dos roles con necesidades distintas (usuario y administrador), permitir el acceso seguro, conservar la sesión y construir un perfil de salud que sirva como insumo para personalizar el contenido. El perfil debe recoger edad, sexo, peso, altura, nivel de actividad, objetivo principal, alergias o restricciones y notas de salud, evitando solicitar información que no tenga una finalidad clara.</p>
+    </div>
+    <p><strong>Decisiones de diseño.</strong> Se diseñó una pantalla de autenticación con dos pestañas —iniciar sesión y crear cuenta— para reducir la carga cognitiva y evitar duplicar rutas. El formulario de registro incorpora validaciones visibles (campos obligatorios, longitud mínima de contraseña, coincidencia de contraseñas y aceptación de la política de tratamiento de datos). El perfil se organiza en bloques: datos personales, perfil de salud, preferencias y privacidad. Se añadió un indicador de porcentaje de perfil completo y un cálculo orientativo del índice de masa corporal (IMC), no como diagnóstico médico sino como dato informativo que ayuda a comprender la relación entre peso y altura. La sección de privacidad permite eliminar la cuenta y los datos almacenados, lo que refuerza el control del usuario.</p>
+    <p><strong>Implementación en el prototipo.</strong> El encabezado refleja el estado de la sesión: muestra “Ingresar” cuando no hay usuario y las iniciales y el nombre cuando la sesión está activa. El rol administrador habilita una entrada adicional en el menú (“Contenidos”) y protege la ruta <code>#/admin</code> mediante una puerta de acceso. Se incluyeron dos cuentas de demostración (<code>demo@vitalia.co</code> / <code>demo123</code> y <code>admin@vitalia.co</code> / <code>admin123</code>) para facilitar la revisión académica sin necesidad de crear datos nuevos. En esta versión los datos se guardan en <code>localStorage</code>; en un entorno productivo se reemplazaría por autenticación con servidor, hash de contraseñas y sesiones seguras, como se explica en RNF3.</p>
+    <p><strong>Criterios de aceptación.</strong> El usuario puede registrarse, iniciar sesión, cerrar sesión, editar su perfil y eliminar sus datos; el administrador accede a la gestión de contenidos; los campos obligatorios impiden el envío y los mensajes de error son comprensibles; el perfil conserva la información entre visitas dentro del mismo navegador. Evidencia: Figuras 5, 6, 14 y 15.</p>
+
+    <h2>4.2 RF2. Gestión de contenidos saludables</h2>
+    <div class="ficha">
+      <h4>Interpretación del requerimiento</h4>
+      <p>El contenido es el núcleo del producto. Se requiere un catálogo organizado en cuatro categorías —alimentación, actividad física, descanso y bienestar— con metadatos que permitan filtrar y comprender cada recomendación: título, resumen, descripción, duración, nivel, porciones o frecuencia, etiquetas, alérgenos, pasos y beneficios. La gestión implica crear, consultar, editar y eliminar contenidos, y debe estar restringida a un rol administrador para preservar la calidad y la coherencia editorial.</p>
+    </div>
+    <p><strong>Decisiones de diseño.</strong> Se separó la información en dos niveles: una capa de datos reutilizable y una capa de presentación. Esto permite que la misma recomendación se muestre como tarjeta en el inicio, como resultado en el catálogo y como detalle completo sin duplicar contenido. La pantalla de administración se resolvió con una tabla y un formulario lateral: la tabla ofrece una visión comparativa del catálogo y el formulario evita cambiar de contexto al crear o editar. Se incluyeron acciones de edición y eliminación con confirmación, un botón para restaurar el catálogo original y un resumen de contenidos por categoría. Las categorías cuentan con color e ícono propios para facilitar el reconocimiento.</p>
+    <p><strong>Implementación en el prototipo.</strong> El archivo <code>datos.js</code> contiene las categorías, los objetivos, las alergias y un catálogo inicial de trece recomendaciones. El estado del catálogo se inicializa desde esa fuente y se persiste en <code>localStorage</code> cuando el administrador crea, edita o elimina un contenido. El formulario valida título y resumen, transforma las etiquetas separadas por comas y los pasos separados por líneas, calcula una duración numérica para los filtros y publica el contenido de inmediato. La portada y el catálogo leen el mismo arreglo, por lo que cualquier cambio se refleja sin recargar la lógica de las vistas.</p>
+    <p><strong>Criterios de aceptación.</strong> El administrador puede crear una recomendación y verla en el inicio y en explorar; puede editarla y observar los cambios; puede eliminarla con confirmación; el catálogo original puede restaurarse; un usuario sin rol administrador no puede acceder a la gestión. Evidencia: Figuras 9 y 18, y ruta <code>#/admin</code>.</p>
+
+    <h2>4.3 RF3. Búsqueda y filtrado</h2>
+    <div class="ficha">
+      <h4>Interpretación del requerimiento</h4>
+      <p>El usuario debe encontrar una recomendación pertinente sin conocer de antemano el catálogo. La búsqueda debe ser tolerante a términos parciales y combinar texto libre con filtros estructurados: categoría, nivel y duración, además de un criterio de orden. También debe comunicar cuántos resultados existen, qué filtros están activos y qué hacer cuando no hay coincidencias.</p>
+    </div>
+    <p><strong>Decisiones de diseño.</strong> Se dispuso un buscador principal en el hero del inicio y un buscador específico en la pantalla de explorar. Los filtros se presentan como chips de categoría y selectores de nivel, duración y orden; esta combinación permite explorar por reconocimiento, sin obligar al usuario a recordar opciones. Los resultados se muestran en una rejilla de tarjetas con imagen, categoría, duración, nivel, título, resumen y etiquetas. El contador de resultados se actualiza en tiempo real y el estado vacío ofrece una acción clara para limpiar los filtros. En móvil los filtros se apilan para evitar desbordamientos y mantener objetivos táctiles cómodos.</p>
+    <p><strong>Implementación en el prototipo.</strong> La función <code>filtrar()</code> normaliza el texto a minúsculas y busca coincidencias en título, resumen, descripción, categoría y etiquetas. Los filtros se combinan con lógica conjuntiva y el orden puede ser por relevancia (puntuación de personalización), título o menor duración. Los eventos <code>input</code> y <code>change</code> actualizan el estado y reemplazan únicamente la zona de resultados, preservando el foco del campo de búsqueda y evitando recargar la página. El botón “Limpiar filtros” restablece todos los criterios.</p>
+    <p><strong>Criterios de aceptación.</strong> Una búsqueda por “sueño” o “desayuno” devuelve resultados coherentes; la combinación de categoría y nivel reduce correctamente el conjunto; el contador coincide con las tarjetas visibles; cuando no hay resultados se muestra un mensaje y una acción de recuperación. Evidencia: Figuras 3, 12 y 20.</p>
+
+    <h2>4.4 RF4. Personalización de recomendaciones</h2>
+    <div class="ficha">
+      <h4>Interpretación del requerimiento</h4>
+      <p>Personalizar no significa ocultar contenido de forma arbitraria, sino ordenarlo y contextualizarlo según la situación del usuario. Los insumos disponibles son el objetivo principal (bajar de peso, ganar masa muscular, tener más energía, dormir mejor, reducir el estrés, mejorar la digestión o fortalecer las defensas), el nivel de actividad y las alergias o restricciones alimentarias. La personalización debe ser explicable: el usuario debe saber por qué ve una recomendación y debe conservar el control para editarla o desactivarla cambiando su perfil.</p>
+    </div>
+    <p><strong>Decisiones de diseño.</strong> En el inicio se incorporó la sección “Recomendaciones personalizadas” con un saludo que menciona el objetivo del usuario. En el detalle se añade un aviso de afinidad cuando la recomendación coincide con el objetivo y una advertencia destacada cuando contiene un alérgeno declarado. En explorar, el orden por relevancia utiliza la misma puntuación, de modo que la personalización no compite con la búsqueda sino que la complementa. Cuando no hay sesión, se invita a crear el perfil sin bloquear la exploración.</p>
+    <p><strong>Implementación en el prototipo.</strong> Se implementó un modelo de puntuación basado en reglas: suma cinco puntos si la recomendación coincide con el objetivo, añade un punto por afinidad de categoría con el objetivo, suma dos puntos si el nivel es adecuado para el nivel de actividad y resta veinte puntos si contiene un alérgeno declarado. La función <code>recomendadas()</code> ordena el catálogo con esa puntuación y la portada muestra las cuatro primeras. La función <code>esCompatible()</code> compara los alérgenos del contenido con las restricciones del perfil. Este enfoque es transparente y fácil de auditar; en un escenario real podría complementarse con modelos de recomendación más sofisticados, siempre con explicabilidad y consentimiento.</p>
+    <p><strong>Criterios de aceptación.</strong> Al cambiar el objetivo en el perfil, el orden de “Para ti” cambia; una recomendación con alérgeno declarado muestra una advertencia; el usuario sin perfil puede explorar el catálogo completo; la explicación de afinidad es visible en el detalle. Evidencia: Figuras 11 y 13.</p>
+
+    <h2>4.5 RF5. Favoritos y seguimiento de hábitos</h2>
+    <div class="ficha">
+      <h4>Interpretación del requerimiento</h4>
+      <p>Guardar una recomendación es una intención; convertirla en hábito requiere seguimiento. El requerimiento agrupa dos tareas relacionadas: conservar una colección personal de recomendaciones para consultarlas después y registrar el cumplimiento diario de hábitos para visualizar constancia y progreso. Ambas necesitan retroalimentación inmediata, persistencia y una forma sencilla de corregir errores.</p>
+    </div>
+    <p><strong>Decisiones de diseño.</strong> El botón de favoritos se incorporó en la esquina superior derecha de cada tarjeta y en el panel lateral del detalle, con un ícono de corazón que cambia de estado y un texto explícito (“Guardar” / “Quitar”). El encabezado muestra un contador para que el usuario perciba el resultado de su acción sin cambiar de pantalla. La vista de favoritos reutiliza el componente tarjeta y ofrece un estado vacío con una llamada a la acción. El seguimiento de hábitos se diseñó con tres métricas (cumplimiento semanal, mejor racha y hábitos cumplidos), una fila por hábito y siete botones diarios; los días cumplidos combinan color e ícono de verificación para no depender solo del color. Al marcar un día se actualizan la racha y el progreso.</p>
+    <p><strong>Implementación en el prototipo.</strong> Los favoritos y los registros de hábitos se almacenan en <code>localStorage</code>. La función <code>alternarFavorito()</code> actualiza el estado, el contador, los botones visibles y, si el usuario está en la vista de favoritos, la lista. La función <code>alternarHabito()</code> agrega o elimina la fecha seleccionada; <code>rachaDe()</code> calcula los días consecutivos hasta hoy y <code>progresoSemanal()</code> calcula el porcentaje de cumplimiento de la semana en curso. Cada acción muestra una notificación breve (toast) como confirmación.</p>
+    <p><strong>Criterios de aceptación.</strong> Guardar una recomendación incrementa el contador y la muestra en favoritos; volver a pulsar la quita; los registros de hábitos persisten al recargar; la racha y el progreso cambian de forma coherente al marcar o desmarcar un día. Evidencia: Figuras 7, 8, 16 y 17.</p>
+  </section>
+
+  <!-- ===================== 5. RNF ===================== -->
+  <section class="seccion salto">
+    <h1>5. Análisis de requerimientos no funcionales</h1>
+    <p>Los requerimientos no funcionales determinan la calidad percibida del producto y condicionan decisiones que no siempre son visibles en la pantalla. A continuación se explica cómo se interpretó cada uno, qué decisiones se tomaron en el diseño y el desarrollo, y qué limitaciones existen en el alcance de este prototipo académico.</p>
+
+    <h2>5.1 RNF1. Rendimiento</h2>
+    <p><strong>Interpretación y objetivo.</strong> La página debe percibirse rápida incluso en conexiones móviles y con un catálogo en crecimiento. El rendimiento se abordó desde el peso de los recursos, la cantidad de solicitudes, el costo de renderizado y la respuesta a la interacción.</p>
+    <p><strong>Decisiones adoptadas.</strong> Se evitó el uso de frameworks y librerías externas de interfaz; la aplicación completa se compone de una hoja de estilos, dos archivos JavaScript y un conjunto reducido de SVG. Las ilustraciones son vectores livianos en lugar de fotografías pesadas. El filtrado y la búsqueda se ejecutan en el cliente sobre un arreglo en memoria, sin llamadas de red por cada pulsación. Los scripts se cargan al final del documento para no bloquear el renderizado. En la galería de mockups se usa <code>loading="lazy"</code> para diferir las imágenes fuera de pantalla. Las animaciones son sutiles y se desactivan cuando el usuario prefiere movimiento reducido mediante <code>prefers-reduced-motion</code>. Como resultado de las pruebas automatizadas, las quince capturas se generaron sin errores de JavaScript y sin desbordamiento horizontal.</p>
+    <p><strong>Evidencia y limitaciones.</strong> La arquitectura ligera y la ausencia de dependencias favorecen un tiempo de carga bajo. No se ejecutó una auditoría Lighthouse formal ni pruebas en redes lentas; se recomienda como siguiente paso medir LCP, INP y CLS, comprimir imágenes si se incorporan fotografías y añadir caché y compresión en el servidor. La Tabla 2 resume las técnicas aplicadas.</p>
+
+    <table>
+      <caption><strong>Tabla 2.</strong> Técnicas de rendimiento aplicadas y su propósito.</caption>
+      <thead><tr><th style="width:30%">Técnica</th><th style="width:70%">Propósito</th></tr></thead>
+      <tbody>
+        <tr><td>SVG en lugar de imágenes rasterizadas</td><td>Reducir peso, permitir escalado nítido y recolorear íconos con CSS.</td></tr>
+        <tr><td>Sin frameworks de interfaz</td><td>Disminuir el JavaScript descargado y el costo de hidratación.</td></tr>
+        <tr><td>Filtrado en cliente</td><td>Responder en tiempo real sin solicitudes al servidor.</td></tr>
+        <tr><td>Scripts al final del documento</td><td>Evitar el bloqueo del renderizado inicial.</td></tr>
+        <tr><td>Carga diferida en galería</td><td>Priorizar el contenido visible y diferir imágenes secundarias.</td></tr>
+        <tr><td>Animaciones con soporte de movimiento reducido</td><td>Mejorar la experiencia sin afectar a usuarios sensibles al movimiento.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>5.2 RNF2. Escalabilidad</h2>
+    <p><strong>Interpretación y objetivo.</strong> El producto debe poder crecer en contenido, categorías, usuarios y funcionalidades sin reescribir la interfaz. La escalabilidad se trabajó en tres frentes: separación de responsabilidades, reutilización de componentes y modelo de datos extensible.</p>
+    <p><strong>Decisiones adoptadas.</strong> Los datos se aislaron en <code>datos.js</code> y la lógica de presentación en <code>app.js</code>; las vistas se generan a partir de funciones independientes y comparten componentes como la tarjeta, el panel, el chip y el botón. El enrutamiento por hash permite agregar nuevas rutas sin duplicar el encabezado ni el pie. El modelo de contenido incluye campos opcionales (alérgenos, objetivos, beneficios, pasos) que admiten nuevos tipos de recomendación. La gestión de contenidos permite ampliar el catálogo sin tocar el código. La retícula fluida y los puntos de quiebre facilitan incorporar nuevas secciones.</p>
+    <p><strong>Proyección.</strong> Para un entorno productivo se propone migrar la capa de datos a una API REST o GraphQL, usar una base de datos relacional para usuarios y contenidos, separar el frontend del backend, incorporar autenticación centralizada y aplicar una arquitectura por componentes. La estructura actual está preparada para ese reemplazo porque las vistas consumen un contrato de datos claro y no dependen de la fuente. También se recomienda versionar el catálogo y definir un flujo editorial con estados (borrador, revisión, publicado).</p>
+
+    <h2>5.3 RNF3. Seguridad y privacidad</h2>
+    <p><strong>Interpretación y objetivo.</strong> El producto trata datos de salud, considerados sensibles. La seguridad y la privacidad exigen minimizar la recolección, informar la finalidad, obtener consentimiento, restringir el acceso por rol y permitir al usuario eliminar su información. En Colombia, la Ley 1581 de 2012 establece obligaciones para el tratamiento de datos personales; el diseño debe reflejar esos principios incluso en un prototipo (Congreso de Colombia, 2012).</p>
+    <p><strong>Decisiones adoptadas.</strong> El registro exige aceptar la política de tratamiento de datos. El perfil explica que la información se usa para personalizar recomendaciones y ofrece la opción “Eliminar mis datos”. La ruta de administración está protegida por rol y muestra una puerta de acceso cuando el usuario no es administrador. Las contraseñas se capturan con campos de tipo <code>password</code> y no se muestran en la interfaz. El prototipo no solicita documentos de identidad, dirección ni datos financieros, lo que reduce la superficie de riesgo. El almacenamiento local se limita al navegador del usuario.</p>
+    <div class="nota">
+      <strong>Limitación explícita del prototipo.</strong> Por tratarse de una demostración académica sin servidor, las cuentas y contraseñas se almacenan en <code>localStorage</code> sin hash. Esto no es aceptable en producción. Un desarrollo real debe usar HTTPS, hash de contraseñas con Argon2 o bcrypt, sesiones o tokens con expiración, control de acceso basado en roles en el servidor, validación y sanitización de entradas, cifrado en reposo y en tránsito, registro de auditoría, políticas de retención y cumplimiento normativo. La interfaz ya contempla consentimiento, minimización y eliminación de datos, que son los puntos de partida de ese modelo.
+    </div>
+
+    <h2>5.4 RNF4. Experiencia de usuario</h2>
+    <p><strong>Interpretación y objetivo.</strong> La experiencia debe ser clara, consistente y accesible para personas con distintos niveles de alfabetización digital. Se adoptaron como referencia las heurísticas de usabilidad de Nielsen (1994) y las pautas WCAG 2.2 (W3C, 2023).</p>
+    <p><strong>Decisiones adoptadas.</strong> La jerarquía visual conduce de la propuesta de valor al buscador, las categorías, las recomendaciones y el seguimiento. El lenguaje es directo y evita tecnicismos innecesarios. Cada acción produce retroalimentación: cambio de estado del corazón, contador de favoritos, notificaciones de confirmación y actualización inmediata de las métricas. Los estados vacíos explican qué hacer. Los formularios agrupan campos relacionados y muestran etiquetas visibles. Se incorporaron un enlace “Saltar al contenido”, foco visible, atributos <code>aria-label</code>, <code>aria-pressed</code> y <code>role="status"</code> para los mensajes, y se evita depender únicamente del color en los hábitos. El contraste entre texto y fondo es alto y las áreas táctiles superan los 34 px. La interfaz respeta la preferencia de movimiento reducido.</p>
+    <p><strong>Evidencia.</strong> Las figuras 11 a 21 muestran la aplicación de estos criterios en escritorio y móvil. Las pruebas de navegación confirmaron ausencia de desbordamiento horizontal a 1440 px y 390 px, y ausencia de errores de JavaScript en las rutas verificadas.</p>
+
+    <h2>5.5 RNF5. Compatibilidad con dispositivos</h2>
+    <p><strong>Interpretación y objetivo.</strong> La página debe funcionar en computadores, tabletas y teléfonos, con distintos tamaños de pantalla y formas de interacción. Se adoptó un enfoque de diseño adaptable con puntos de quiebre en 1024, 860 y 560 px.</p>
+    <p><strong>Decisiones adoptadas.</strong> El encabezado colapsa en un menú móvil; las rejillas pasan de cuatro a dos y luego a una columna; el hero se apila y la ilustración se reubica; los filtros y formularios se organizan en una columna; las tablas permiten desplazamiento horizontal controlado. Se usan unidades relativas, <code>clamp()</code> para títulos y una metaetiqueta <code>viewport</code> para evitar el escalado automático. Las pruebas de captura se realizaron con Chrome en anchos de 1440 px y 390 px con densidad 2x; no se detectó desbordamiento horizontal.</p>
+    <p><strong>Limitaciones y matriz recomendada.</strong> No se ejecutaron pruebas exhaustivas en Firefox, Safari ni navegadores móviles reales. Algunas propiedades modernas, como <code>color-mix()</code>, requieren versiones recientes; se recomienda validar la matriz Chrome, Edge, Firefox, Safari, Android e iOS, y definir respaldos de color para navegadores antiguos. La Tabla 3 resume los puntos de quiebre y el comportamiento esperado.</p>
+
+    <table>
+      <caption><strong>Tabla 3.</strong> Comportamiento adaptable por rango de pantalla.</caption>
+      <thead><tr><th style="width:22%">Rango</th><th style="width:78%">Comportamiento</th></tr></thead>
+      <tbody>
+        <tr><td>Más de 1024 px</td><td>Rejilla de cuatro tarjetas, detalle en dos columnas, panel lateral fijo en perfil y administración.</td></tr>
+        <tr><td>861 a 1024 px</td><td>Rejilla de dos tarjetas, detalle y perfil en una columna, paneles laterales en flujo normal.</td></tr>
+        <tr><td>561 a 860 px</td><td>Menú colapsable, hero apilado, métricas en una columna, tablas con desplazamiento.</td></tr>
+        <tr><td>Hasta 560 px</td><td>Una sola columna, buscador apilado, formularios a ancho completo, botones táctiles amplios.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===================== 6. WIREFRAME ===================== -->
+  <section class="seccion salto">
+    <h1>6. Wireframe</h1>
+    <p>El wireframe se elaboró en escala de grises y sin tipografía definitiva para concentrar la discusión en la estructura, la jerarquía y la navegación. Se definieron ocho pantallas para el usuario y una para el administrador, además de las variantes móviles. El wireframe completo, con las nueve pantallas y el mapa de navegación, está disponible en el archivo <code>wireframe.html</code> del paquete de entrega; en este informe se presentan las pantallas más representativas.</p>
+
+    <h2>6.1 Mapa de pantallas y navegación</h2>
+    <p>La navegación principal es persistente y se organiza en cinco destinos: Inicio, Explorar, Hábitos, Favoritos y Perfil. El acceso a la gestión de contenidos aparece solo para el rol administrador. Los flujos principales son: explorar → detalle → favoritos; registrarse → perfil → recomendaciones personalizadas; y hábitos → registro diario → métricas. La Figura 1 representa la relación entre las pantallas.</p>
+
+    <figure>
+      <div class="mapa">
+        <div class="mapa__fila"><span class="mapa__nodo mapa__nodo--fuerte">Inicio</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Explorar / Buscar</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Detalle</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Favoritos</span></div>
+        <div class="mapa__fila"><span class="mapa__nodo">Inicio</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Explorar</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Detalle</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Hábitos</span></div>
+        <div class="mapa__fila"><span class="mapa__nodo">Inicio de sesión</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Registro</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Perfil de salud</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Recomendaciones personalizadas</span></div>
+        <div class="mapa__fila"><span class="mapa__nodo">Perfil</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Administración</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Crear / editar / eliminar contenido</span><span class="mapa__flecha">→</span><span class="mapa__nodo">Catálogo público</span></div>
+        <div class="mapa__fila" style="margin-bottom:0"><span class="mapa__nodo">Encabezado</span><span class="mapa__flecha">↔</span><span class="mapa__nodo">Inicio</span><span class="mapa__nodo">Explorar</span><span class="mapa__nodo">Hábitos</span><span class="mapa__nodo">Favoritos</span><span class="mapa__nodo">Perfil</span></div>
+      </div>
+      <figcaption><strong>Figura 1.</strong> Mapa de navegación y flujos principales del producto. Elaboración propia.</figcaption>
+    </figure>
+
+    <h2>6.2 Descripción de las pantallas</h2>
+
+    <h3>Inicio</h3>
+    <p>La pantalla de inicio se organiza en siete bloques: encabezado persistente, hero con propuesta de valor y buscador, chips de búsquedas populares, indicadores de confianza, rejilla de categorías, sección de recomendaciones personalizadas, panel de seguimiento de hábitos y franja de valor. La jerarquía prioriza el mensaje (“Recomendaciones saludables para tu día a día”) y la acción de búsqueda; las categorías funcionan como un segundo nivel de exploración y las tarjetas permiten un tercer nivel de detalle. La Figura 2 muestra la estructura en escritorio; la variante móvil apila los bloques y colapsa el menú.</p>
+
+    <figure>
+      <img src="../assets/capturas/wf-01-inicio-escritorio.png" alt="Wireframe de la pantalla de inicio en escritorio" />
+      <figcaption><strong>Figura 2.</strong> Wireframe de la pantalla de inicio en escritorio. Elaboración propia.</figcaption>
+    </figure>
+
+    <h3>Explorar y buscar</h3>
+    <p>La pantalla de explorar concentra la búsqueda y el filtrado. El encabezado de la vista incluye migas de pan, título, descripción y una barra de filtros con buscador, nivel, duración y orden. Debajo se ubican los chips de categoría y el contador de resultados. La rejilla de tarjetas ocupa el resto de la pantalla y el estado vacío reemplaza la rejilla cuando no hay coincidencias. La Figura 3 presenta esta estructura.</p>
+
+    <figure>
+      <img class="wf-movil" src="../assets/capturas/wf-03-explorar.png" alt="Wireframe de la pantalla de explorar y filtrar" />
+      <figcaption><strong>Figura 3.</strong> Wireframe de la pantalla de explorar, búsqueda y filtrado. Elaboración propia.</figcaption>
+    </figure>
+
+    <h3>Detalle de la recomendación</h3>
+    <p>El detalle se divide en dos columnas: el contenido principal (imagen, categoría, título, resumen, justificación, pasos, beneficios y etiquetas) y un panel lateral con datos clave y acciones (favoritos y seguimiento). En móvil el panel se desplaza debajo del contenido. La jerarquía busca que el usuario comprenda qué es la recomendación, por qué se le sugiere y cómo ponerla en práctica. La Figura 4 muestra la estructura.</p>
+
+    <figure>
+      <img class="wf-movil" src="../assets/capturas/wf-04-detalle.png" alt="Wireframe del detalle de una recomendación" />
+      <figcaption><strong>Figura 4.</strong> Wireframe del detalle de una recomendación. Elaboración propia.</figcaption>
+    </figure>
+
+    <h3>Inicio de sesión y registro</h3>
+    <p>La pantalla de autenticación contrapone un panel de marca con beneficios y un panel de formulario con pestañas. El formulario de registro incluye nombre, correo, contraseña, confirmación y aceptación de la política de datos. Los mensajes de validación se muestran mediante notificaciones y el formulario conserva el foco lógico. La Figura 5 presenta la estructura.</p>
+
+    <figure>
+      <img class="wf-movil" src="../assets/capturas/wf-05-login.png" alt="Wireframe de la pantalla de inicio de sesión y registro" />
+      <figcaption><strong>Figura 5.</strong> Wireframe de inicio de sesión y registro. Elaboración propia.</figcaption>
+    </figure>
+
+    <h3>Perfil de salud</h3>
+    <p>El perfil se organiza en una cabecera con identidad del usuario y un cuerpo en dos columnas: el formulario (datos personales, actividad, medidas, objetivo, alergias, notas y consentimiento) y el panel lateral (IMC, porcentaje de perfil completo y privacidad). La Figura 6 muestra la estructura.</p>
+
+    <figure>
+      <img class="wf-movil" src="../assets/capturas/wf-06-perfil.png" alt="Wireframe del perfil de salud del usuario" />
+      <figcaption><strong>Figura 6.</strong> Wireframe del perfil de salud. Elaboración propia.</figcaption>
+    </figure>
+
+    <h3>Favoritos</h3>
+    <p>La vista de favoritos reutiliza la rejilla de tarjetas y añade un encabezado de sección, un contador y un estado vacío con llamada a la acción. Su estructura es deliberadamente simple para que el usuario reconozca el mismo lenguaje visual del catálogo. La Figura 7 muestra la estructura.</p>
+
+    <figure>
+      <img class="wf-movil" src="../assets/capturas/wf-07-favoritos.png" alt="Wireframe de la pantalla de favoritos" />
+      <figcaption><strong>Figura 7.</strong> Wireframe de la pantalla de favoritos. Elaboración propia.</figcaption>
+    </figure>
+
+    <h3>Seguimiento de hábitos</h3>
+    <p>La pantalla de hábitos presenta tres métricas en la parte superior, un encabezado de sección y una fila por hábito. Cada fila incluye ícono de categoría, título, meta, frecuencia, racha y siete botones diarios. La Figura 8 presenta la estructura.</p>
+
+    <figure>
+      <img class="wf-movil" src="../assets/capturas/wf-08-habitos.png" alt="Wireframe del seguimiento semanal de hábitos" />
+      <figcaption><strong>Figura 8.</strong> Wireframe del seguimiento de hábitos. Elaboración propia.</figcaption>
+    </figure>
+
+    <h3>Gestión de contenidos</h3>
+    <p>La gestión de contenidos combina una tabla comparativa con un formulario lateral. La tabla muestra título, categoría, duración, nivel y acciones; el formulario permite crear o editar con campos de título, categoría, resumen, descripción, duración, nivel, etiquetas y pasos. La Figura 9 muestra la estructura.</p>
+
+    <figure>
+      <img class="wf-movil" src="../assets/capturas/wf-09-admin.png" alt="Wireframe de la gestión de contenidos saludables" />
+      <figcaption><strong>Figura 9.</strong> Wireframe de la gestión de contenidos. Elaboración propia.</figcaption>
+    </figure>
+
+    <h2>6.3 Verificación de requerimientos en la estructura</h2>
+    <p>La estructura propuesta asigna un espacio explícito a cada requerimiento funcional: el perfil y el encabezado resuelven RF1; las tarjetas, el detalle y la administración resuelven RF2; el buscador y los filtros resuelven RF3; la sección “Para ti”, los avisos y el orden resuelven RF4; y los favoritos y el seguimiento resuelven RF5. La Tabla 4 resume esta correspondencia.</p>
+
+    <table>
+      <caption><strong>Tabla 4.</strong> Correspondencia entre requerimientos funcionales y estructura del wireframe.</caption>
+      <thead><tr><th style="width:14%">RF</th><th style="width:46%">Elementos estructurales</th><th style="width:40%">Pantallas</th></tr></thead>
+      <tbody>
+        <tr><td>RF1</td><td>Formularios de acceso, bloques de perfil, consentimiento, eliminación de datos, menú por rol.</td><td>Login, registro, perfil, encabezado, administración.</td></tr>
+        <tr><td>RF2</td><td>Rejilla de tarjetas, detalle, tabla de catálogo, formulario de contenido, acciones de edición.</td><td>Inicio, explorar, detalle, administración.</td></tr>
+        <tr><td>RF3</td><td>Buscador, chips de categoría, selectores de nivel, duración y orden, contador, estado vacío.</td><td>Inicio, explorar.</td></tr>
+        <tr><td>RF4</td><td>Sección “Para ti”, aviso de afinidad, advertencia de alérgenos, orden por relevancia.</td><td>Inicio, explorar, detalle, perfil.</td></tr>
+        <tr><td>RF5</td><td>Botón de favoritos, contador, rejilla de favoritos, métricas, fila de hábito, botones diarios.</td><td>Inicio, detalle, favoritos, hábitos.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===================== 7. MOCKUP ===================== -->
+  <section class="seccion salto">
+    <h1>7. Mockup</h1>
+    <p>El mockup aplica el diseño visual sobre la estructura del wireframe. La intención estética es transmitir naturaleza, cercanía y confianza sin caer en un tono infantil: verde profundo para la marca, lima para la vitalidad, ámbar para la energía y coral para las acciones afectivas como favoritos. La tipografía combina Poppins para títulos —geométrica, amable y con buen peso— e Inter para el texto, por su legibilidad en pantalla. La iconografía es de trazo lineal, con un grosor coherente de 1,8 px sobre una retícula de 24 px.</p>
+
+    <h2>7.1 Sistema de diseño</h2>
+    <p>El sistema se documentó y aplicó de forma consistente en todas las pantallas. La Figura 10 presenta la paleta, las muestras tipográficas, los componentes y la iconografía. Las Tablas 5 y 6 resumen las decisiones.</p>
+
+    <figure>
+      <img src="../assets/capturas/mk-00-sistema-diseno.png" alt="Sistema de diseño de Vitalia: paleta, tipografía, componentes e iconografía" />
+      <figcaption><strong>Figura 10.</strong> Sistema de diseño: paleta, tipografía, componentes e iconografía. Elaboración propia.</figcaption>
+    </figure>
+
+    <table>
+      <caption><strong>Tabla 5.</strong> Paleta de colores y uso previsto.</caption>
+      <thead><tr><th style="width:24%">Color</th><th style="width:16%">Hex</th><th style="width:60%">Uso</th></tr></thead>
+      <tbody>
+        <tr><td>Verde profundo</td><td>#0F3B26</td><td>Marca, encabezados, footer y textos de máximo contraste.</td></tr>
+        <tr><td>Verde Vitalia</td><td>#26784B</td><td>Acciones primarias, enlaces y estados activos.</td></tr>
+        <tr><td>Lima vital</td><td>#B7DD7F</td><td>Acentos, progreso y elementos de vitalidad.</td></tr>
+        <tr><td>Ámbar energía</td><td>#F2B441</td><td>Alertas informativas, rachas y métricas de energía.</td></tr>
+        <tr><td>Coral favoritos</td><td>#E8704F</td><td>Favoritos activos y acciones de atención.</td></tr>
+        <tr><td>Fondo natural</td><td>#F5F7F1</td><td>Fondo general de la aplicación.</td></tr>
+        <tr><td>Texto principal</td><td>#16241B</td><td>Texto de lectura y títulos secundarios.</td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption><strong>Tabla 6.</strong> Tipografía, escala y propósito.</caption>
+      <thead><tr><th style="width:22%">Elemento</th><th style="width:26%">Fuente / peso</th><th style="width:52%">Uso</th></tr></thead>
+      <tbody>
+        <tr><td>Título principal</td><td>Poppins 800, 2,5–3,8 rem</td><td>Mensaje de valor del hero; escala fluida con <code>clamp()</code>.</td></tr>
+        <tr><td>Títulos de sección</td><td>Poppins 700, 1,6–2,2 rem</td><td>Jerarquía de bloques y pantallas.</td></tr>
+        <tr><td>Títulos de tarjeta</td><td>Poppins 600, 1,05 rem</td><td>Nombre de la recomendación.</td></tr>
+        <tr><td>Texto de lectura</td><td>Inter 400, 0,86–1,06 rem</td><td>Descripciones, párrafos y ayudas.</td></tr>
+        <tr><td>Etiquetas y metadatos</td><td>Inter 600–700, 0,68–0,8 rem</td><td>Chips, tags, duración, nivel y estados.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>7.2 Decisiones de diseño y justificación</h2>
+    <p><strong>Color.</strong> El verde es el color dominante porque se asocia culturalmente con salud, naturaleza y crecimiento. El lima se usa con moderación para evitar fatiga visual y para señalar progreso. El ámbar y el coral se reservan para información y acciones que requieren atención, lo que crea una jerarquía cromática clara. Los fondos claros y las superficies blancas favorecen la legibilidad y el descanso visual.</p>
+    <p><strong>Tipografía.</strong> Poppins aporta personalidad a los títulos y Inter garantiza legibilidad en tamaños pequeños, especialmente en móvil. La escala es fluida para adaptarse a distintos anchos sin saltos bruscos. Las etiquetas usan mayúsculas y espaciado para diferenciarse del texto de lectura.</p>
+    <p><strong>Iconografía e ilustración.</strong> Los íconos lineales mantienen un lenguaje común y se colorean con la categoría. La ilustración del hero es un vector de un bowl saludable que comunica la temática sin depender de fotografías y mantiene el peso del recurso bajo. Las tarjetas usan un fondo degradado por categoría y un ícono central para que el catálogo sea reconocible incluso antes de leer.</p>
+    <p><strong>Composición y espaciado.</strong> Se usan radios amplios (14–28 px), sombras suaves y mucho espacio en blanco para transmitir calma. La retícula de 12 columnas se adapta a cuatro, dos y una columna. Los componentes comparten bordes, radios y transiciones para que la interfaz se sienta coherente. Las acciones primarias son verdes y llenas; las secundarias son blancas con borde; las acciones destructivas usan un rojo suave.</p>
+    <p><strong>Accesibilidad visual.</strong> El texto principal sobre fondo claro y el texto blanco sobre verde profundo mantienen un contraste alto. Los estados de favoritos y hábitos combinan color, ícono y texto. Los formularios tienen etiquetas visibles y mensajes de ayuda. El foco es visible y las áreas interactivas son amplias.</p>
+
+    <h2>7.3 Pantallas de alta fidelidad</h2>
+    <p>Las Figuras 11 a 18 presentan las pantallas de escritorio y las Figuras 19 a 21 las variantes móviles. Todas las capturas provienen del prototipo navegable, por lo que el mockup y el prototipo comparten la misma implementación. La galería completa, con imágenes ampliables, está disponible en <code>mockup.html</code>.</p>
+
+    <figure><img src="../assets/capturas/01-inicio-escritorio.png" alt="Mockup de la pantalla de inicio de Vitalia" /><figcaption><strong>Figura 11.</strong> Mockup de la pantalla de inicio en escritorio. Elaboración propia.</figcaption></figure>
+    <figure><img src="../assets/capturas/02-explorar-escritorio.png" alt="Mockup de la pantalla de explorar y filtrar" /><figcaption><strong>Figura 12.</strong> Mockup de la pantalla de explorar y filtrar. Elaboración propia.</figcaption></figure>
+    <figure><img src="../assets/capturas/03-detalle-escritorio.png" alt="Mockup del detalle de una recomendación" /><figcaption><strong>Figura 13.</strong> Mockup del detalle de una recomendación. Elaboración propia.</figcaption></figure>
+    <figure><img src="../assets/capturas/04-login-escritorio.png" alt="Mockup de inicio de sesión y registro" /><figcaption><strong>Figura 14.</strong> Mockup de inicio de sesión y registro. Elaboración propia.</figcaption></figure>
+    <figure><img src="../assets/capturas/05-perfil-escritorio.png" alt="Mockup del perfil de salud" /><figcaption><strong>Figura 15.</strong> Mockup del perfil de salud. Elaboración propia.</figcaption></figure>
+    <figure><img src="../assets/capturas/06-favoritos-escritorio.png" alt="Mockup de la pantalla de favoritos" /><figcaption><strong>Figura 16.</strong> Mockup de la pantalla de favoritos. Elaboración propia.</figcaption></figure>
+    <figure><img src="../assets/capturas/07-habitos-escritorio.png" alt="Mockup del seguimiento de hábitos" /><figcaption><strong>Figura 17.</strong> Mockup del seguimiento de hábitos. Elaboración propia.</figcaption></figure>
+    <figure><img src="../assets/capturas/08-admin-escritorio.png" alt="Mockup de la gestión de contenidos" /><figcaption><strong>Figura 18.</strong> Mockup de la gestión de contenidos. Elaboración propia.</figcaption></figure>
+
+    <h2>7.4 Adaptación a dispositivos</h2>
+    <p>Las variantes móviles conservan la identidad y la jerarquía, pero reorganizan el contenido en una columna. El encabezado muestra el menú colapsable y el avatar; el hero prioriza la ilustración y el buscador; las tarjetas ocupan el ancho completo; los filtros se apilan y los botones se amplían. Las Figuras 19 a 21 muestran el resultado en un ancho de 390 px con densidad 2x.</p>
+
+    <figure><img class="movil" src="../assets/capturas/13-inicio-movil-vista.png" alt="Mockup móvil de la pantalla de inicio" /><figcaption><strong>Figura 19.</strong> Mockup móvil de la pantalla de inicio. Elaboración propia.</figcaption></figure>
+    <figure><img class="movil" src="../assets/capturas/14-explorar-movil-vista.png" alt="Mockup móvil de la pantalla de explorar" /><figcaption><strong>Figura 20.</strong> Mockup móvil de la pantalla de explorar. Elaboración propia.</figcaption></figure>
+    <figure><img class="movil" src="../assets/capturas/15-detalle-movil-vista.png" alt="Mockup móvil del detalle de una recomendación" /><figcaption><strong>Figura 21.</strong> Mockup móvil del detalle de una recomendación. Elaboración propia.</figcaption></figure>
+  </section>
+
+  <!-- ===================== 8. PROTOTIPO ===================== -->
+  <section class="seccion salto">
+    <h1>8. Prototipo</h1>
+    <p>El prototipo es una aplicación web navegable construida con HTML5, CSS3 y JavaScript, sin dependencias externas de interfaz. Implementa las ocho vistas principales, un enrutador por hash, estado persistente en <code>localStorage</code>, búsqueda y filtrado en tiempo real, personalización por reglas, favoritos, seguimiento de hábitos y gestión de contenidos. La arquitectura separa los datos (<code>assets/js/datos.js</code>) de la lógica y las vistas (<code>assets/js/app.js</code>), y los estilos se concentran en <code>assets/css/estilos.css</code>.</p>
+
+    <h2>8.1 Flujos implementados</h2>
+    <p>La Tabla 7 describe los cinco flujos principales y las rutas que los soportan. Todos los flujos se pueden recorrer con las cuentas de demostración y conservan el estado entre pantallas.</p>
+
+    <table>
+      <caption><strong>Tabla 7.</strong> Flujos principales del prototipo y rutas asociadas.</caption>
+      <thead><tr><th style="width:22%">Flujo</th><th style="width:48%">Pasos</th><th style="width:30%">Rutas / evidencia</th></tr></thead>
+      <tbody>
+        <tr><td>Buscar y consultar</td><td>Inicio → búsqueda o chip → explorar → filtros → detalle → guardar favorito.</td><td><code>#/inicio</code>, <code>#/explorar</code>, <code>#/detalle/r1</code>.</td></tr>
+        <tr><td>Registro y perfil</td><td>Login → crear cuenta → completar perfil de salud → guardar → recomendaciones personalizadas.</td><td><code>#/login</code>, <code>#/perfil</code>.</td></tr>
+        <tr><td>Favoritos</td><td>Detalle o tarjeta → guardar → contador → favoritos → quitar.</td><td><code>#/favoritos</code>; Figura 16.</td></tr>
+        <tr><td>Hábitos</td><td>Hábitos → marcar día → actualizar racha y progreso → desmarcar si es necesario.</td><td><code>#/habitos</code>; Figura 17.</td></tr>
+        <tr><td>Administración</td><td>Login admin → contenidos → crear / editar / eliminar → ver cambio en el catálogo.</td><td><code>#/admin</code>; Figura 18.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8.2 Pruebas de funcionamiento</h2>
+    <p>Se ejecutaron pruebas manuales y automatizadas de navegación. La verificación automatizada con Chrome DevTools Protocol recorrió las rutas principales, comprobó que el contenido se renderizara, que las imágenes cargaran y que no existiera desbordamiento horizontal en 1440 px y 390 px; no se registraron errores de JavaScript. La Tabla 8 presenta los casos de prueba funcionales.</p>
+
+    <table>
+      <caption><strong>Tabla 8.</strong> Casos de prueba funcionales del prototipo.</caption>
+      <thead><tr><th style="width:26%">Caso</th><th style="width:40%">Procedimiento</th><th style="width:22%">Resultado esperado</th><th style="width:12%">Estado</th></tr></thead>
+      <tbody>
+        <tr><td>Búsqueda por texto</td><td>Escribir “sueño” en explorar.</td><td>Se muestran recomendaciones relacionadas y el contador se actualiza.</td><td>Aprobado</td></tr>
+        <tr><td>Combinación de filtros</td><td>Seleccionar categoría Descanso y nivel Fácil.</td><td>Solo se muestran coincidencias y el estado vacío aparece si no hay.</td><td>Aprobado</td></tr>
+        <tr><td>Registro e inicio de sesión</td><td>Crear una cuenta y volver a ingresar.</td><td>La sesión se conserva y el encabezado muestra el nombre.</td><td>Aprobado</td></tr>
+        <tr><td>Perfil de salud</td><td>Cambiar el objetivo y guardar.</td><td>El orden de “Para ti” cambia y el perfil se actualiza.</td><td>Aprobado</td></tr>
+        <tr><td>Favoritos</td><td>Guardar y quitar una recomendación.</td><td>El contador y la vista de favoritos reflejan el cambio.</td><td>Aprobado</td></tr>
+        <tr><td>Hábitos</td><td>Marcar y desmarcar un día.</td><td>La racha y el porcentaje semanal se recalculan.</td><td>Aprobado</td></tr>
+        <tr><td>Administración</td><td>Crear un contenido con la cuenta admin.</td><td>El contenido aparece en el catálogo público.</td><td>Aprobado</td></tr>
+      </tbody>
+    </table>
+
+    <h2>8.3 Enlace y acceso al prototipo</h2>
+    <div class="enlace-caja">
+      <p><strong>Prototipo navegable:</strong> <code>prototipo.html</code> (incluido en la carpeta <code>proyecto_vitalia</code> de la entrega). Se abre directamente en el navegador, sin servidor ni instalación.</p>
+      <p><strong>Cuenta de usuario demo:</strong> <code>demo@vitalia.co</code> / <code>demo123</code>.<br />
+      <strong>Cuenta de administrador demo:</strong> <code>admin@vitalia.co</code> / <code>admin123</code>.</p>
+      <p><strong>Publicación opcional:</strong> si se requiere un enlace web, la carpeta puede publicarse sin cambios en GitHub Pages, Netlify Drop o cualquier alojamiento estático; el prototipo no depende de backend. El enlace público se registraría aquí: <span style="color:#56685c">[agregar URL si se publica]</span>.</p>
+    </div>
+    <p>El prototipo también se acompaña de la galería de mockups (<code>mockup.html</code>) y del wireframe (<code>wireframe.html</code>), de modo que el evaluador puede contrastar los tres niveles de concreción. Las Figuras 19 a 21 muestran la experiencia móvil; la navegación completa se verifica mejor abriendo el prototipo en el navegador.</p>
+
+    <h2>8.4 Limitaciones y trabajo futuro</h2>
+    <p>El prototipo no incluye backend, autenticación real ni base de datos; su estado vive en el navegador y se pierde si el usuario borra los datos del sitio. La personalización es un modelo de reglas explicable, no un sistema de aprendizaje automático. No se realizaron pruebas formales de usabilidad con usuarios ni una auditoría de accesibilidad con lectores de pantalla. Como trabajo futuro se propone: implementar una API y una base de datos, añadir autenticación segura y recuperación de contraseña, realizar pruebas con usuarios, auditar accesibilidad con WCAG 2.2, medir rendimiento con Lighthouse, ampliar el catálogo con contenido revisado por profesionales de la salud y agregar recordatorios y notificaciones opt-in.</p>
+  </section>
+
+  <!-- ===================== 9. CONCLUSIONES ===================== -->
+  <section class="seccion salto">
+    <h1>9. Conclusiones</h1>
+    <ol>
+      <li><strong>El análisis de requerimientos es una herramienta de diseño, no un trámite previo.</strong> Traducir cada requerimiento en actores, tareas, información y criterios de aceptación permitió tomar decisiones justificadas y verificar su presencia en las pantallas. La matriz de trazabilidad evidenció que ningún requerimiento quedó sin un espacio concreto en la interfaz y facilitó la comunicación entre análisis, diseño y construcción.</li>
+      <li><strong>La progresión wireframe → mockup → prototipo reduce el retrabajo y mejora la calidad.</strong> Separar la estructura de la apariencia evitó que las decisiones estéticas condicionaran la organización de la información. El wireframe permitió discutir la jerarquía y la navegación; el mockup aportó identidad y consistencia; el prototipo validó la interacción. Este recorrido progresivo es más eficiente que intentar construir directamente la interfaz final.</li>
+      <li><strong>Un sistema de diseño consistente mejora la experiencia y la mantenibilidad.</strong> La reutilización de tarjetas, paneles, chips, botones e íconos redujo la duplicación y aseguró que la interfaz se sintiera coherente. La paleta, la tipografía y los espaciados documentados facilitan incorporar nuevas pantallas y contenidos sin perder la identidad del producto.</li>
+      <li><strong>La personalización debe ser transparente y responsable.</strong> El modelo de reglas permitió explicar por qué se recomienda un contenido y advirtió sobre alérgenos declarados. En un tema sensible como la salud, la personalización no puede ser una caja negra: el usuario debe entender, controlar y poder corregir la información que la alimenta.</li>
+      <li><strong>La accesibilidad y la privacidad son decisiones de diseño, no añadidos posteriores.</strong> El contraste, el foco visible, las etiquetas, los estados que no dependen solo del color, el consentimiento y la eliminación de datos se incorporaron desde el wireframe. Estas decisiones mejoran la experiencia de todos los usuarios y reducen riesgos legales y éticos.</li>
+      <li><strong>El prototipo evidenció las limitaciones de una solución solo en el cliente y el valor de los fundamentos web.</strong> Construir la navegación, el estado, el filtrado y la persistencia con JavaScript permitió comprender el costo real de cada interacción. Al mismo tiempo, quedó claro que un producto de salud requiere backend, autenticación segura, validación en servidor, pruebas con usuarios y contenido revisado por profesionales. El prototipo es una base sólida y honesta sobre la cual escalar.</li>
+    </ol>
+    <p>Como dificultad principal se identificó el equilibrio entre la riqueza del catálogo y la simplicidad de la interfaz: demasiados filtros o metadatos pueden abrumar, pero muy pocos reducen la utilidad. También exigió cuidado la adaptación de una interfaz densa a móvil y la persistencia del estado entre vistas sin recargar la página. Estas dificultades se resolvieron con iteración, componentes reutilizables y pruebas de navegación en distintos anchos.</p>
+  </section>
+
+  <!-- ===================== 10. REFERENCIAS ===================== -->
+  <section class="seccion salto refs">
+    <h1>10. Referencias</h1>
+    <p>Las referencias se presentan con un formato académico coherente, adaptado de APA séptima edición y conforme a los lineamientos de citación de CUNDigital.</p>
+    <p>Adobe Inc. (2023). <em>Adobe XD: diseño y prototipado de experiencias de usuario</em> [Software, discontinuado]. https://www.adobe.com/products/xd.html</p>
+    <p>AlexCG Design. (2020). <em>Curso Figma desde CERO | Curso de Introducción a Figma</em> [Video]. YouTube. https://www.youtube.com/watch?v=SqO-olNvnU</p>
+    <p>Balsamiq Studios. (2024). <em>Balsamiq: fast, focused wireframing</em> [Herramienta en línea]. https://balsamiq.com/</p>
+    <p>Congreso de Colombia. (2012). <em>Ley 1581 de 2012, por la cual se dictan disposiciones generales para la protección de datos personales</em>. Diario Oficial No. 48.587.</p>
+    <p>Corporación Unificada Nacional de Educación Superior. (2026). <em>Guía de Actividad de Construcción Aplicada (ACA): Ingeniería Web</em> [Documento de la asignatura]. CUN Digital.</p>
+    <p>Dribbble. (2024). <em>Dribbble: the leading destination to find and showcase creative work</em> [Comunidad en línea]. https://dribbble.com/</p>
+    <p>EDteam. (2017). <em>Minicurso de Balsamiq Mockups (1) - Los wireframes y la interfaz</em> [Video]. YouTube. https://www.youtube.com/watch?v=4WqfxF1QjTM</p>
+    <p>Figma. (2024). <em>Figma: the collaborative interface design tool</em> [Software en línea]. https://www.figma.com/</p>
+    <p>Google. (2024). <em>Google Fonts</em> [Catálogo tipográfico en línea]. https://fonts.google.com/</p>
+    <p>International Organization for Standardization. (2019). <em>ISO 9241-210:2019. Ergonomics of human-system interaction — Part 210: Human-centred design for interactive systems</em>. ISO.</p>
+    <p>InVision. (2024). <em>InVision: digital product design platform</em> [Plataforma digital, servicio cerrado en diciembre de 2024]. https://www.invisionapp.com/</p>
+    <p>Mozilla Developer Network. (2024). <em>MDN Web Docs</em> [Documentación técnica en línea]. https://developer.mozilla.org/en-US/</p>
+    <p>Nielsen, J. (1994). <em>10 usability heuristics for user interface design</em>. Nielsen Norman Group. https://www.nngroup.com/articles/ten-usability-heuristics/</p>
+    <p>W3C. (2023). <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. World Wide Web Consortium. https://www.w3.org/TR/WCAG22/</p>
+    <p>W3Schools. (2024). <em>W3Schools: online web tutorials</em> [Plataforma educativa en línea]. https://www.w3schools.com/</p>
+
+    <div class="pie-doc">Informe de la Actividad de Construcción Aplicada · Vitalia · Ingeniería Web · CUN Digital · 2026</div>
+  </section>
+
+</div>
+</body>
+</html>

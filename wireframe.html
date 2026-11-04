@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitalia · Wireframe de baja fidelidad</title>
+  <style>
+    :root { --tinta:#2b2b2b; --gris:#8a8a8a; --linea:#c9c9c9; --fondo:#e9e9e6; --papel:#fbfbf9; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:"Segoe UI", system-ui, sans-serif; background:var(--fondo); color:var(--tinta); }
+    .hoja { width:min(100% - 48px, 1360px); margin:0 auto; padding:44px 0 70px; }
+    .encabezado { display:flex; align-items:flex-end; justify-content:space-between; gap:30px; flex-wrap:wrap; border-bottom:3px solid var(--tinta); padding-bottom:22px; margin-bottom:14px; }
+    .encabezado h1 { font-size:2rem; margin:0 0 6px; letter-spacing:-0.02em; }
+    .encabezado p { margin:0; color:#555; max-width:70ch; font-size:0.92rem; }
+    .encabezado .sello { border:2px solid var(--tinta); padding:8px 14px; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; white-space:nowrap; }
+    .leyenda { display:flex; gap:22px; flex-wrap:wrap; margin:18px 0 34px; font-size:0.76rem; color:#555; }
+    .leyenda span { display:inline-flex; align-items:center; gap:7px; }
+    .leyenda i { width:22px; height:14px; border:1.5px solid var(--tinta); display:inline-block; }
+    .leyenda i.rayas { border-style:dashed; }
+    .leyenda i.cruz { background:linear-gradient(45deg,transparent 47%,#aaa 47%,#aaa 53%,transparent 53%),linear-gradient(-45deg,transparent 47%,#aaa 47%,#aaa 53%,transparent 53%); }
+
+    .galeria { display:grid; grid-template-columns:repeat(3, 1fr); gap:34px 28px; align-items:start; }
+    .pantalla { break-inside:avoid; }
+    .pantalla--ancha { grid-column:1 / -1; }
+    .pantalla figcaption { font-size:0.78rem; font-weight:700; margin-bottom:9px; display:flex; align-items:baseline; gap:8px; }
+    .pantalla figcaption b { background:var(--tinta); color:#fff; font-size:0.66rem; padding:2px 7px; letter-spacing:0.05em; }
+    .pantalla figcaption small { font-weight:400; color:#666; font-size:0.72rem; }
+
+    .marco { background:var(--papel); border:2px solid var(--tinta); border-radius:6px; overflow:hidden; }
+    .marco--movil { width:100%; max-width:390px; margin:0 auto; min-height:640px; }
+    .marco--escritorio { width:100%; }
+    .wf { padding:12px; display:flex; flex-direction:column; gap:12px; }
+    .wf + .wf { border-top:1.5px solid var(--linea); }
+
+    .barra { display:flex; align-items:center; gap:8px; padding-bottom:10px; border-bottom:1.5px solid var(--linea); }
+    .logo { width:30px; height:30px; border:1.5px solid var(--tinta); border-radius:5px; flex:none; display:grid; place-items:center; font-size:0.5rem; color:var(--gris); }
+    .menu { display:flex; gap:8px; margin-left:auto; }
+    .menu span { width:26px; height:7px; background:var(--linea); border-radius:2px; }
+    .menu span:last-child { width:18px; height:18px; border-radius:50%; background:none; border:1.5px solid var(--tinta); }
+
+    .ln { display:block; height:7px; background:var(--linea); border-radius:2px; margin:5px 0; }
+    .ln.t { height:12px; background:#bdbdbd; }
+    .ln.b { height:15px; background:#a9a9a9; }
+    .w25{width:25%} .w35{width:35%} .w45{width:45%} .w55{width:55%} .w65{width:65%} .w75{width:75%} .w85{width:85%} .w100{width:100%}
+
+    .fila { display:flex; gap:10px; align-items:center; }
+    .col { display:flex; flex-direction:column; gap:2px; flex:1; min-width:0; }
+    .caja { border:1.5px solid var(--linea); border-radius:4px; padding:10px; }
+    .caja--fuerte { border:1.5px solid var(--tinta); }
+    .caja--dash { border:1.5px dashed var(--linea); }
+    .caja--gris { background:#efefec; border:1.5px solid var(--linea); }
+    .img { border:1.5px solid var(--linea); background:linear-gradient(45deg,transparent 48.5%,#c4c4c4 48.5%,#c4c4c4 51.5%,transparent 51.5%),linear-gradient(-45deg,transparent 48.5%,#c4c4c4 48.5%,#c4c4c4 51.5%,transparent 51.5%),#f2f2ef; display:grid; place-items:center; color:#9a9a9a; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; min-height:90px; }
+    .btn { border:1.5px solid var(--tinta); border-radius:4px; padding:7px 12px; font-size:0.66rem; font-weight:700; text-align:center; background:#e4e4e0; color:var(--tinta); white-space:nowrap; }
+    .btn--lleno { background:#3a3a3a; color:#fff; border-color:#3a3a3a; }
+    .btn--linea { background:none; }
+    .input { border:1.5px solid var(--linea); border-radius:4px; padding:8px 10px; font-size:0.66rem; color:#8a8a8a; background:#fff; flex:1; }
+    .input--alto { min-height:54px; }
+    .etiqueta { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#666; margin-bottom:4px; display:block; }
+    .chips { display:flex; gap:6px; flex-wrap:wrap; }
+    .chip { border:1.5px solid var(--linea); border-radius:999px; padding:4px 10px; font-size:0.6rem; color:#666; }
+    .chip--on { background:#3a3a3a; color:#fff; border-color:#3a3a3a; }
+    .tarjeta-wf { border:1.5px solid var(--linea); border-radius:5px; overflow:hidden; display:flex; flex-direction:column; }
+    .tarjeta-wf .img { min-height:64px; border:0; border-bottom:1.5px solid var(--linea); }
+    .tarjeta-wf .cuerpo { padding:8px; }
+    .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+    .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
+    .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:9px; }
+    .circulo { width:34px; height:34px; border-radius:50%; border:1.5px solid var(--linea); flex:none; }
+    .avatar { width:46px; height:46px; border-radius:50%; border:1.5px solid var(--tinta); flex:none; }
+    .linea-div { height:1.5px; background:var(--linea); margin:2px 0; }
+    .tabs { display:flex; border:1.5px solid var(--linea); border-radius:4px; overflow:hidden; }
+    .tabs span { flex:1; text-align:center; padding:7px; font-size:0.64rem; font-weight:700; color:#777; }
+    .tabs span:first-child { background:#e4e4e0; color:var(--tinta); border-right:1.5px solid var(--linea); }
+    .check { display:flex; align-items:center; gap:7px; font-size:0.62rem; color:#666; }
+    .check i { width:13px; height:13px; border:1.5px solid var(--linea); flex:none; }
+    .anot { position:relative; }
+    .nota { position:absolute; font-size:0.58rem; color:#777; border-left:2px solid #999; padding-left:6px; }
+    .semana-wf { display:flex; gap:5px; }
+    .semana-wf span { width:24px; height:24px; border:1.5px solid var(--linea); border-radius:4px; font-size:0.55rem; display:grid; place-items:center; color:#777; }
+    .semana-wf span.on { background:#3a3a3a; color:#fff; border-color:#3a3a3a; }
+    .tabla-wf { width:100%; border-collapse:collapse; font-size:0.62rem; }
+    .tabla-wf th, .tabla-wf td { border:1.5px solid var(--linea); padding:6px 7px; text-align:left; }
+    .tabla-wf th { background:#efefec; font-size:0.58rem; text-transform:uppercase; letter-spacing:0.05em; }
+    .pie-wf { display:flex; gap:10px; padding-top:10px; border-top:1.5px solid var(--linea); }
+    .pie-wf .col .ln { margin:4px 0; }
+    .mapa { margin:0 0 40px; padding:24px; background:var(--papel); border:2px solid var(--tinta); border-radius:6px; }
+    .mapa h2 { margin:0 0 18px; font-size:1.05rem; }
+    .flujo { display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:0.72rem; }
+    .flujo .nodo { border:1.5px solid var(--tinta); padding:8px 12px; border-radius:4px; font-weight:700; background:#f3f3f0; }
+    .flujo .nodo--fuerte { background:#3a3a3a; color:#fff; }
+    .flujo .flecha { color:#888; font-size:0.9rem; }
+    @media (max-width:1100px){ .galeria { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:760px){ .galeria { grid-template-columns:1fr; } .marco--movil { max-width:390px; } }
+    @media print { body{background:#fff;} .hoja{width:auto;padding:0;} .galeria{grid-template-columns:repeat(2,1fr);} .pantalla{break-inside:avoid;} }
+  </style>
+</head>
+<body>
+  <div class="hoja">
+    <header class="encabezado">
+      <div>
+        <h1>Vitalia · Wireframe de baja fidelidad</h1>
+        <p>Representación estructural de la página de recomendaciones saludables. Se muestran bloques, jerarquía, navegación, buscador, listados y formularios, sin color, tipografía definitiva ni imágenes reales. Proyecto: Actividad de Construcción Aplicada · Ingeniería Web · CUN Digital.</p>
+      </div>
+      <span class="sello">Entregable 1 · Wireframe</span>
+    </header>
+
+    <div class="leyenda">
+      <span><i></i> Contenedor / bloque</span>
+      <span><i class="rayas"></i> Zona dinámica o repetible</span>
+      <span><i class="cruz"></i> Imagen o ilustración</span>
+      <span>Líneas grises = texto de ejemplo</span>
+    </div>
+
+    <section class="mapa">
+      <h2>Mapa de pantallas y navegación</h2>
+      <div class="flujo">
+        <span class="nodo nodo--fuerte">Inicio</span><span class="flecha">→</span>
+        <span class="nodo">Explorar / Buscar</span><span class="flecha">→</span>
+        <span class="nodo">Detalle de recomendación</span><span class="flecha">→</span>
+        <span class="nodo">Favoritos</span>
+        <span class="flecha">|</span>
+        <span class="nodo">Iniciar sesión / Registro</span><span class="flecha">→</span>
+        <span class="nodo">Perfil de salud</span>
+        <span class="flecha">|</span>
+        <span class="nodo">Seguimiento de hábitos</span>
+        <span class="flecha">|</span>
+        <span class="nodo">Gestión de contenidos (admin)</span>
+      </div>
+    </section>
+
+    <div class="galeria">
+
+      <!-- 01 · INICIO ESCRITORIO -->
+      <figure class="pantalla pantalla--ancha">
+        <figcaption><b>01</b> Inicio · escritorio <small>Jerarquía: propuesta de valor → búsqueda → categorías → recomendaciones → hábitos</small></figcaption>
+        <div class="marco marco--escritorio">
+          <div class="wf">
+            <div class="barra">
+              <div class="logo">LOGO</div>
+              <div class="col"><span class="ln w25"></span></div>
+              <div class="menu"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+            <div class="fila" style="gap:22px;align-items:center;padding:6px 0">
+              <div class="col" style="flex:1.1">
+                <span class="ln w45"></span>
+                <span class="ln b w85"></span>
+                <span class="ln b w75"></span>
+                <span class="ln w65"></span>
+                <div class="fila" style="margin-top:8px">
+                  <div class="input">Buscar recomendación…</div>
+                  <div class="btn btn--lleno">Buscar</div>
+                </div>
+                <div class="chips" style="margin-top:6px"><span class="chip">Desayuno</span><span class="chip">Cardio</span><span class="chip">Sueño</span><span class="chip">Estrés</span></div>
+                <div class="fila" style="margin-top:10px;gap:22px">
+                  <div class="col"><span class="ln b w35"></span><span class="ln w55"></span></div>
+                  <div class="col"><span class="ln b w35"></span><span class="ln w55"></span></div>
+                  <div class="col"><span class="ln b w35"></span><span class="ln w55"></span></div>
+                </div>
+              </div>
+              <div class="img" style="flex:0.9;min-height:220px">Ilustración principal</div>
+            </div>
+            <div class="linea-div"></div>
+            <div class="fila" style="justify-content:space-between"><span class="ln w25"></span><span class="btn btn--linea">Ver todo</span></div>
+            <div class="grid4">
+              <div class="caja"><div class="circulo"></div><span class="ln w65"></span><span class="ln w85"></span><span class="ln w45"></span></div>
+              <div class="caja"><div class="circulo"></div><span class="ln w65"></span><span class="ln w85"></span><span class="ln w45"></span></div>
+              <div class="caja"><div class="circulo"></div><span class="ln w65"></span><span class="ln w85"></span><span class="ln w45"></span></div>
+              <div class="caja"><div class="circulo"></div><span class="ln w65"></span><span class="ln w85"></span><span class="ln w45"></span></div>
+            </div>
+            <div class="linea-div"></div>
+            <div class="fila" style="justify-content:space-between"><div class="col"><span class="ln w25"></span><span class="ln w45"></span></div><span class="ln w25"></span></div>
+            <div class="grid4">
+              <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+              <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+              <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+              <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+            </div>
+            <div class="linea-div"></div>
+            <div class="caja caja--gris fila" style="padding:18px;gap:20px">
+              <div class="col"><span class="ln t w45"></span><span class="ln w85"></span><span class="ln w65"></span><div class="chips" style="margin-top:8px"><span class="chip">Registro diario</span><span class="chip">Rachas</span><span class="chip">Progreso</span></div><span class="btn" style="width:130px;margin-top:8px">Ver seguimiento</span></div>
+              <div class="circulo" style="width:110px;height:110px;border-width:5px"></div>
+            </div>
+            <div class="pie-wf">
+              <div class="col"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span></div>
+              <div class="col"><span class="ln w45"></span><span class="ln w65"></span><span class="ln w55"></span></div>
+              <div class="col"><span class="ln w45"></span><span class="ln w65"></span><span class="ln w55"></span></div>
+              <div class="col"><span class="ln w45"></span><span class="ln w65"></span><span class="ln w55"></span></div>
+            </div>
+          </div>
+        </div>
+      </figure>
+
+      <!-- 02 · INICIO MÓVIL -->
+      <figure class="pantalla">
+        <figcaption><b>02</b> Inicio · móvil <small>Adaptación responsive: menú colapsable y una columna</small></figcaption>
+        <div class="marco marco--movil">
+          <div class="wf">
+            <div class="barra">
+              <div class="logo">LOGO</div>
+              <div class="menu"><span></span><span></span><span style="width:18px;height:18px;background:none;border:1.5px solid var(--tinta);border-radius:50%"></span></div>
+            </div>
+            <div class="img" style="min-height:150px">Ilustración</div>
+            <span class="ln w45"></span>
+            <span class="ln b w100"></span>
+            <span class="ln b w85"></span>
+            <span class="ln w75"></span>
+            <div class="input">Buscar recomendación…</div>
+            <div class="btn btn--lleno">Buscar</div>
+            <div class="chips"><span class="chip">Desayuno</span><span class="chip">Cardio</span><span class="chip">Sueño</span></div>
+            <div class="linea-div"></div>
+            <span class="ln w45"></span>
+            <div class="grid2">
+              <div class="caja"><div class="circulo"></div><span class="ln w75"></span><span class="ln w55"></span></div>
+              <div class="caja"><div class="circulo"></div><span class="ln w75"></span><span class="ln w55"></span></div>
+              <div class="caja"><div class="circulo"></div><span class="ln w75"></span><span class="ln w55"></span></div>
+              <div class="caja"><div class="circulo"></div><span class="ln w75"></span><span class="ln w55"></span></div>
+            </div>
+            <div class="linea-div"></div>
+            <span class="ln w45"></span>
+            <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span></div></div>
+            <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span></div></div>
+          </div>
+        </div>
+      </figure>
+
+      <!-- 03 · EXPLORAR -->
+      <figure class="pantalla">
+        <figcaption><b>03</b> Explorar / Buscar <small>Buscador, filtros por categoría, nivel y duración + listado</small></figcaption>
+        <div class="marco marco--movil">
+          <div class="wf">
+            <div class="barra"><div class="logo">LOGO</div><div class="menu"><span></span><span></span><span style="width:18px;height:18px;background:none;border:1.5px solid var(--tinta);border-radius:50%"></span></div></div>
+            <span class="ln w35"></span>
+            <span class="ln b w85"></span>
+            <span class="ln w75"></span>
+            <div class="input">Buscar por título, etiqueta o categoría…</div>
+            <div class="fila">
+              <div class="input">Nivel ▾</div>
+              <div class="input">Duración ▾</div>
+            </div>
+            <div class="input">Ordenar por ▾</div>
+            <div class="chips"><span class="chip chip--on">Todas</span><span class="chip">Alimentación</span><span class="chip">Actividad</span><span class="chip">Descanso</span><span class="chip">Bienestar</span></div>
+            <div class="fila" style="justify-content:space-between"><span class="ln w45"></span><span class="ln w25"></span></div>
+            <div class="grid2">
+              <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+              <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+              <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+              <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+            </div>
+          </div>
+        </div>
+      </figure>
+
+      <!-- 04 · DETALLE -->
+      <figure class="pantalla">
+        <figcaption><b>04</b> Detalle de recomendación <small>Contenido, pasos, beneficios y panel lateral de acciones</small></figcaption>
+        <div class="marco marco--movil">
+          <div class="wf">
+            <div class="barra"><div class="logo">LOGO</div><div class="menu"><span></span><span></span><span style="width:18px;height:18px;background:none;border:1.5px solid var(--tinta);border-radius:50%"></span></div></div>
+            <span class="ln w65"></span>
+            <div class="img" style="min-height:110px">Imagen de la recomendación</div>
+            <span class="ln w35"></span>
+            <span class="ln b w85"></span>
+            <span class="ln w100"></span>
+            <span class="ln w75"></span>
+            <div class="caja caja--dash"><span class="etiqueta">¿Por qué te la recomendamos?</span><span class="ln w100"></span><span class="ln w85"></span><span class="ln w65"></span></div>
+            <span class="etiqueta">Paso a paso</span>
+            <div class="fila"><div class="circulo" style="width:20px;height:20px"></div><div class="col"><span class="ln w85"></span></div></div>
+            <div class="fila"><div class="circulo" style="width:20px;height:20px"></div><div class="col"><span class="ln w75"></span></div></div>
+            <div class="fila"><div class="circulo" style="width:20px;height:20px"></div><div class="col"><span class="ln w85"></span></div></div>
+            <div class="caja caja--gris"><span class="etiqueta">Beneficios</span><div class="grid2"><span class="ln w85"></span><span class="ln w75"></span><span class="ln w85"></span><span class="ln w65"></span></div></div>
+            <div class="fila"><div class="btn btn--lleno" style="flex:1">Guardar en favoritos</div><div class="btn" style="flex:1">Ver seguimiento</div></div>
+            <div class="linea-div"></div>
+            <span class="ln w45"></span>
+            <div class="grid2"><div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w75"></span><span class="ln w55"></span></div></div><div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w75"></span><span class="ln w55"></span></div></div></div>
+          </div>
+        </div>
+      </figure>
+
+      <!-- 05 · LOGIN / REGISTRO -->
+      <figure class="pantalla">
+        <figcaption><b>05</b> Iniciar sesión / Crear cuenta <small>Pestañas, formulario, validaciones y consentimiento</small></figcaption>
+        <div class="marco marco--movil">
+          <div class="wf">
+            <div class="barra"><div class="logo">LOGO</div><div class="menu"><span></span><span></span><span style="width:18px;height:18px;background:none;border:1.5px solid var(--tinta);border-radius:50%"></span></div></div>
+            <span class="ln b w75"></span>
+            <span class="ln w85"></span>
+            <div class="tabs"><span>Iniciar sesión</span><span>Crear cuenta</span></div>
+            <div><span class="etiqueta">Nombre completo</span><div class="input">Tu nombre</div></div>
+            <div><span class="etiqueta">Correo electrónico</span><div class="input">tu@correo.com</div></div>
+            <div class="fila">
+              <div class="col"><span class="etiqueta">Contraseña</span><div class="input">••••••••</div></div>
+              <div class="col"><span class="etiqueta">Confirmar</span><div class="input">••••••••</div></div>
+            </div>
+            <div class="check"><i></i><span class="ln w85" style="margin:0"></span></div>
+            <div class="btn btn--lleno">Crear mi cuenta</div>
+            <div class="caja caja--dash"><span class="etiqueta">Cuentas demo</span><span class="ln w85"></span><span class="ln w65"></span></div>
+            <div class="linea-div"></div>
+            <span class="ln w45"></span>
+            <div class="caja caja--gris"><span class="ln w75"></span><span class="ln w85"></span><span class="ln w55"></span></div>
+          </div>
+        </div>
+      </figure>
+
+      <!-- 06 · PERFIL -->
+      <figure class="pantalla">
+        <figcaption><b>06</b> Perfil de salud <small>Datos personales, objetivo, alergias, privacidad e IMC</small></figcaption>
+        <div class="marco marco--movil">
+          <div class="wf">
+            <div class="barra"><div class="logo">LOGO</div><div class="menu"><span></span><span></span><span style="width:18px;height:18px;background:none;border:1.5px solid var(--tinta);border-radius:50%"></span></div></div>
+            <div class="fila"><div class="avatar"></div><div class="col"><span class="ln t w65"></span><span class="ln w85"></span></div><span class="btn btn--linea">Salir</span></div>
+            <div class="linea-div"></div>
+            <span class="etiqueta">Datos personales</span>
+            <div class="fila"><div class="col"><span class="etiqueta">Nombre</span><div class="input"></div></div><div class="col"><span class="etiqueta">Edad</span><div class="input"></div></div></div>
+            <div class="fila"><div class="col"><span class="etiqueta">Sexo</span><div class="input">▾</div></div><div class="col"><span class="etiqueta">Actividad</span><div class="input">▾</div></div></div>
+            <div class="fila"><div class="col"><span class="etiqueta">Peso</span><div class="input"></div></div><div class="col"><span class="etiqueta">Altura</span><div class="input"></div></div></div>
+            <div><span class="etiqueta">Objetivo principal</span><div class="input">▾</div></div>
+            <div><span class="etiqueta">Alergias / restricciones</span><div class="chips"><span class="chip">Lactosa</span><span class="chip">Gluten</span><span class="chip">Frutos secos</span></div></div>
+            <div><span class="etiqueta">Notas de salud</span><div class="input input--alto"></div></div>
+            <div class="check"><i></i><span class="ln w85" style="margin:0"></span></div>
+            <div class="fila"><div class="btn btn--lleno" style="flex:1">Guardar cambios</div><div class="btn btn--linea" style="flex:1">Eliminar datos</div></div>
+            <div class="caja caja--gris"><span class="etiqueta">IMC estimado</span><span class="ln b w35"></span><div class="linea-div"></div><span class="ln w85"></span></div>
+          </div>
+        </div>
+      </figure>
+
+      <!-- 07 · FAVORITOS -->
+      <figure class="pantalla">
+        <figcaption><b>07</b> Favoritos <small>Colección personal reutilizando el componente tarjeta</small></figcaption>
+        <div class="marco marco--movil">
+          <div class="wf">
+            <div class="barra"><div class="logo">LOGO</div><div class="menu"><span></span><span></span><span style="width:18px;height:18px;background:none;border:1.5px solid var(--tinta);border-radius:50%"></span></div></div>
+            <span class="ln w45"></span>
+            <span class="ln b w75"></span>
+            <span class="ln w85"></span>
+            <div class="linea-div"></div>
+            <div class="fila" style="justify-content:space-between"><span class="ln w45"></span><span class="ln w25"></span></div>
+            <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+            <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+            <div class="tarjeta-wf"><div class="img">Imagen</div><div class="cuerpo"><span class="ln w45"></span><span class="ln w85"></span><span class="ln w65"></span><span class="ln w35"></span></div></div>
+            <div class="caja caja--dash" style="text-align:center"><span class="ln w45" style="margin:0 auto"></span><span class="ln w65" style="margin:6px auto"></span><span class="btn" style="display:inline-block">Explorar recomendaciones</span></div>
+          </div>
+        </div>
+      </figure>
+
+      <!-- 08 · HÁBITOS -->
+      <figure class="pantalla">
+        <figcaption><b>08</b> Seguimiento de hábitos <small>Métricas, rachas y registro semanal por hábito</small></figcaption>
+        <div class="marco marco--movil">
+          <div class="wf">
+            <div class="barra"><div class="logo">LOGO</div><div class="menu"><span></span><span></span><span style="width:18px;height:18px;background:none;border:1.5px solid var(--tinta);border-radius:50%"></span></div></div>
+            <span class="ln w55"></span>
+            <span class="ln b w85"></span>
+            <span class="ln w75"></span>
+            <div class="grid3">
+              <div class="caja" style="text-align:center"><span class="ln b w45" style="margin:0 auto"></span><span class="ln w85" style="margin:5px auto"></span></div>
+              <div class="caja" style="text-align:center"><span class="ln b w45" style="margin:0 auto"></span><span class="ln w85" style="margin:5px auto"></span></div>
+              <div class="caja" style="text-align:center"><span class="ln b w45" style="margin:0 auto"></span><span class="ln w85" style="margin:5px auto"></span></div>
+            </div>
+            <div class="linea-div"></div>
+            <span class="ln w45"></span>
+            <div class="caja">
+              <div class="fila"><div class="circulo"></div><div class="col"><span class="ln w65"></span><span class="ln w45"></span></div></div>
+              <div class="semana-wf" style="margin-top:8px"><span>L</span><span class="on">M</span><span>X</span><span class="on">J</span><span>V</span><span>S</span><span>D</span></div>
+            </div>
+            <div class="caja">
+              <div class="fila"><div class="circulo"></div><div class="col"><span class="ln w65"></span><span class="ln w45"></span></div></div>
+              <div class="semana-wf" style="margin-top:8px"><span>L</span><span>M</span><span class="on">X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+            </div>
+            <div class="caja">
+              <div class="fila"><div class="circulo"></div><div class="col"><span class="ln w65"></span><span class="ln w45"></span></div></div>
+              <div class="semana-wf" style="margin-top:8px"><span class="on">L</span><span class="on">M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+            </div>
+            <div class="caja caja--dash"><span class="ln w85"></span><span class="ln w65"></span></div>
+          </div>
+        </div>
+      </figure>
+
+      <!-- 09 · ADMIN -->
+      <figure class="pantalla">
+        <figcaption><b>09</b> Gestión de contenidos <small>Tabla de contenidos + formulario de creación/edición (rol admin)</small></figcaption>
+        <div class="marco marco--movil">
+          <div class="wf">
+            <div class="barra"><div class="logo">LOGO</div><div class="menu"><span></span><span></span><span style="width:18px;height:18px;background:none;border:1.5px solid var(--tinta);border-radius:50%"></span></div></div>
+            <span class="ln w45"></span>
+            <span class="ln b w85"></span>
+            <span class="ln w75"></span>
+            <div class="grid3">
+              <div class="caja" style="text-align:center"><span class="ln b w45" style="margin:0 auto"></span><span class="ln w75" style="margin:5px auto"></span></div>
+              <div class="caja" style="text-align:center"><span class="ln b w45" style="margin:0 auto"></span><span class="ln w75" style="margin:5px auto"></span></div>
+              <div class="caja" style="text-align:center"><span class="ln b w45" style="margin:0 auto"></span><span class="ln w75" style="margin:5px auto"></span></div>
+            </div>
+            <table class="tabla-wf">
+              <thead><tr><th>Título</th><th>Categoría</th><th>Acciones</th></tr></thead>
+              <tbody>
+                <tr><td><span class="ln w85" style="margin:0"></span></td><td><span class="ln w65" style="margin:0"></span></td><td><span class="ln w45" style="margin:0"></span></td></tr>
+                <tr><td><span class="ln w85" style="margin:0"></span></td><td><span class="ln w65" style="margin:0"></span></td><td><span class="ln w45" style="margin:0"></span></td></tr>
+                <tr><td><span class="ln w85" style="margin:0"></span></td><td><span class="ln w65" style="margin:0"></span></td><td><span class="ln w45" style="margin:0"></span></td></tr>
+                <tr><td><span class="ln w85" style="margin:0"></span></td><td><span class="ln w65" style="margin:0"></span></td><td><span class="ln w45" style="margin:0"></span></td></tr>
+              </tbody>
+            </table>
+            <div class="linea-div"></div>
+            <span class="etiqueta">Nuevo contenido</span>
+            <div><span class="etiqueta">Título</span><div class="input"></div></div>
+            <div><span class="etiqueta">Categoría</span><div class="input">▾</div></div>
+            <div><span class="etiqueta">Resumen</span><div class="input input--alto"></div></div>
+            <div class="fila"><div class="col"><span class="etiqueta">Duración</span><div class="input"></div></div><div class="col"><span class="etiqueta">Nivel</span><div class="input">▾</div></div></div>
+            <div><span class="etiqueta">Etiquetas</span><div class="input"></div></div>
+            <div><span class="etiqueta">Pasos</span><div class="input input--alto"></div></div>
+            <div class="btn btn--lleno">Publicar contenido</div>
+          </div>
+        </div>
+      </figure>
+
+    </div>
+  </div>
+</body>
+</html>
