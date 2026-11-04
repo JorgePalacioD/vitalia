@@ -75,13 +75,23 @@ El PDF resultante conserva Arial 12 pt, interlineado 1.5 y márgenes de 2.54 cm.
 ## Antes de entregar
 
 1. Reemplace en `informe/informe.html` los placeholders `[Integrante 1]`, `[Integrante 2]`, `[Integrante 3]` y `[Nombre del docente]`.
-2. Si publica el prototipo, agregue la URL en el espacio `[agregar URL si se publica]` del informe.
+2. La URL publicada ya está registrada en el informe y en este README.
 3. Vuelva a generar el PDF después de cualquier cambio.
 4. Verifique que `index.html`, `mockup.html` y `prototipo.html` abran el PDF en `informe/Informe_ACA_Vitalia.pdf`.
 
-## Publicación opcional
+## Publicación
 
-La carpeta completa puede publicarse sin cambios en GitHub Pages, Netlify Drop o cualquier alojamiento estático. El prototipo no depende de un backend; solo utiliza `localStorage` para conservar el estado en el navegador.
+El proyecto está publicado en GitHub Pages:
+
+- Portal: https://jorgepalaciod.github.io/vitalia/
+- Prototipo: https://jorgepalaciod.github.io/vitalia/prototipo.html#/inicio
+- Wireframe: https://jorgepalaciod.github.io/vitalia/wireframe.html
+- Mockup: https://jorgepalaciod.github.io/vitalia/mockup.html
+- Informe: https://jorgepalaciod.github.io/vitalia/informe/Informe_ACA_Vitalia.pdf
+
+Repositorio: https://github.com/JorgePalacioD/vitalia
+
+Para actualizar el sitio basta con hacer `git push` a la rama `main`; GitHub Pages reconstruye automáticamente. El prototipo no depende de un backend; solo utiliza `localStorage` para conservar el estado en el navegador.
 
 ## Limitaciones del prototipo
 
