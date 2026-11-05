@@ -74,7 +74,7 @@ El PDF resultante conserva Arial 12 pt, interlineado 1.5 y márgenes de 2.54 cm.
 
 ## Antes de entregar
 
-1. Reemplace en `informe/informe.html` los placeholders `[Integrante 1]`, `[Integrante 2]`, `[Integrante 3]` y `[Nombre del docente]`.
+1. Los nombres de los integrantes y del docente ya están registrados en `informe/informe.html`.
 2. La URL publicada ya está registrada en el informe y en este README.
 3. Vuelva a generar el PDF después de cualquier cambio.
 4. Verifique que `index.html`, `mockup.html` y `prototipo.html` abran el PDF en `informe/Informe_ACA_Vitalia.pdf`.
